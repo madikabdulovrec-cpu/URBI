@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBI — ИЖК</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.dir-desc-sec{padding:100px 0;position:relative;overflow:hidden}
+.dir-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+.dir-grid h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:20px}
+.dir-grid p{font-size:.95rem;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.dir-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dir-stat{text-align:center;padding:28px 20px}
+.dir-stat-num{font-size:2rem;font-weight:900;color:var(--blue);margin-bottom:4px}
+.dir-stat-label{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.geo{position:absolute;pointer-events:none;opacity:.05;border:3px solid var(--navy)}
+.geo1{top:40px;right:-60px;width:200px;height:200px;transform:rotate(25deg);border-radius:var(--r2)}
+.geo2{bottom:60px;left:-40px;width:150px;height:150px;border-radius:50%;transform:rotate(-15deg)}
+/* Process */
+.proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:56px;position:relative}
+.proc-grid::before{content:'';position:absolute;top:28px;left:5%;right:5%;height:2px;background:var(--border)}
+.proc-step{text-align:center;padding:0 12px}
+.proc-num{font-size:1.1rem;font-weight:900;color:var(--blue);opacity:.4;margin-bottom:6px}
+.proc-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--blue);background:var(--white);margin:0 auto 18px;position:relative;z-index:1;transition:all .3s}
+.proc-step:hover .proc-dot{background:var(--blue);box-shadow:0 0 16px rgba(45,110,181,.25)}
+.proc-title{font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+.proc-text{font-size:.75rem;color:var(--text3);line-height:1.6}
+/* Projects */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.proj-card{border-radius:var(--r2);overflow:hidden;background:var(--white);border:1px solid var(--border);transition:all .4s var(--ease)}
+.proj-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-float-hover)}
+.proj-card::after{content:'';display:block;height:14px;background:radial-gradient(ellipse,rgba(13,27,42,.06),transparent);margin:-7px 10% 0;border-radius:50%;filter:blur(4px)}
+.proj-card img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.proj-info{padding:20px 24px}
+.proj-name{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.proj-meta{font-size:.72rem;color:var(--text3)}
+@media(max-width:1024px){.dir-grid{grid-template-columns:1fr}.proc-grid{grid-template-columns:repeat(3,1fr);gap:24px}.proc-grid::before{display:none}.proj-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.proc-grid{grid-template-columns:1fr;gap:20px}.proj-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="preloader"><span>URBI</span></div>
+<div class="grid-lines"><span></span><span></span><span></span></div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">URBI<span>.</span></a>
+  <div class="nav-center">
+    <a href="index.html">Главная</a>
+    <a href="about.html">О компании</a>
+    <a href="cases.html">Кейсы</a>
+    <a href="gradostroenie.html">Градостроение</a>
+    <a href="izhs.html">ИЖС</a>
+    <a href="izhk.html" class="active">ИЖК</a>
+    <a href="contacts.html">Контакты</a>
+  </div>
+  <a href="contacts.html" class="nav-cta">Обсудить проект</a>
+  <div class="burger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mob-menu"><a href="index.html">Главная</a><a href="about.html">О компании</a><a href="cases.html">Кейсы</a><a href="gradostroenie.html">Градостроение</a><a href="izhs.html">ИЖС</a><a href="izhk.html">ИЖК</a><a href="contacts.html">Контакты</a></div>
+
+<section class="page-hero">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80" alt="ИЖК"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content container">
+    <div class="sec-tag">Направление</div>
+    <h1 class="sec-title" style="font-size:clamp(2rem,4vw,3.2rem)">ИЖК — Индивидуальные<br>жилые комплексы</h1>
+    <p class="sec-desc">Место для текста — комплексный подход к проектированию жилых комплексов и коттеджных посёлков</p>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-item"><span class="strip-dot"></span>35+ комплексов</div>
+  <div class="strip-item"><span class="strip-dot"></span>Полный цикл</div>
+  <div class="strip-item"><span class="strip-dot"></span>Авторский надзор</div>
+</div>
+
+<!-- Description -->
+<section class="dir-desc-sec">
+  <div class="geo geo1"></div>
+  <div class="geo geo2"></div>
+  <div class="container">
+    <div class="dir-grid">
+      <div>
+        <div class="sec-tag rv">ИЖК</div>
+        <h2 class="rv rv-d1">Комплексное проектирование жилых кварталов</h2>
+        <p class="rv rv-d2">Место для текста — описание направления ИЖК: проектирование коттеджных посёлков, таунхаусов и малоэтажных жилых комплексов.</p>
+        <p class="rv rv-d3">Место для текста — преимущества работы с URBI: мастер-планирование, инженерные сети, благоустройство, единый архитектурный код.</p>
+        <a href="contacts.html" class="btn-urban rv rv-d4" style="margin-top:20px">Обсудить проект <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+      <div>
+        <div class="dir-stats">
+          <div class="dir-stat card-float lev-d1 rv"><div class="dir-stat-num">35+</div><div class="dir-stat-label">Комплексов</div></div>
+          <div class="dir-stat card-float lev-d2 rv rv-d1"><div class="dir-stat-num">500+</div><div class="dir-stat-label">Га территорий</div></div>
+          <div class="dir-stat card-float lev-d3 rv rv-d2"><div class="dir-stat-num">12</div><div class="dir-stat-label">Городов</div></div>
+          <div class="dir-stat card-float lev-d4 rv rv-d3"><div class="dir-stat-num">98%</div><div class="dir-stat-label">Довольных</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section style="background:var(--gray)">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="sec-tag rv" style="margin:0 auto 18px">Процесс</div>
+      <h2 class="sec-title rv rv-d1">Этапы работы</h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-step rv"><div class="proc-num">01</div><div class="proc-dot"></div><h4 class="proc-title">Анализ</h4><p class="proc-text">Место для текста — исследование участка</p></div>
+      <div class="proc-step rv rv-d1"><div class="proc-num">02</div><div class="proc-dot"></div><h4 class="proc-title">Мастер-план</h4><p class="proc-text">Место для текста — генеральный план</p></div>
+      <div class="proc-step rv rv-d2"><div class="proc-num">03</div><div class="proc-dot"></div><h4 class="proc-title">Проектирование</h4><p class="proc-text">Место для текста — рабочая документация</p></div>
+      <div class="proc-step rv rv-d3"><div class="proc-num">04</div><div class="proc-dot"></div><h4 class="proc-title">Реализация</h4><p class="proc-text">Место для текста — авторский надзор</p></div>
+      <div class="proc-step rv rv-d4"><div class="proc-num">05</div><div class="proc-dot"></div><h4 class="proc-title">Сдача</h4><p class="proc-text">Место для текста — приёмка и заселение</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section>
+  <div class="container">
+    <div style="text-align:center">
+      <div class="sec-tag rv" style="margin:0 auto 18px">Проекты</div>
+      <h2 class="sec-title rv rv-d1">Примеры работ ИЖК</h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card rv"><img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=600&q=80" alt=""><div class="proj-info"><div class="proj-name">Green Valley</div><div class="proj-meta">Алматинская обл. · 12 га · 2025</div></div></div>
+      <div class="proj-card rv rv-d1"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt=""><div class="proj-info"><div class="proj-name">Loft Seventeen</div><div class="proj-meta">Алматы · 210 м² · 2024</div></div></div>
+      <div class="proj-card rv rv-d2"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt=""><div class="proj-info"><div class="proj-name">Парковые Кварталы</div><div class="proj-meta">Астана · 25 га · 2026</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-bottom:0">
+<div style="background:var(--navy);border-radius:var(--r3);padding:80px;text-align:center;margin:0 48px" class="rv">
+  <h2 class="sec-title" style="color:var(--white)">Обсудить проект ИЖК?</h2>
+  <p class="sec-desc" style="color:rgba(255,255,255,.45);margin:0 auto 32px">Место для текста — приглашение к сотрудничеству</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <a href="contacts.html" class="btn-urban btn-urban-white">Связаться <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    <a href="https://wa.me/77081587757" target="_blank" class="btn-urban" style="background:#25d366">WhatsApp</a>
+  </div>
+</div>
+</section>
+
+<footer class="footer" style="margin-top:120px"><div class="container"><div class="footer-grid"><div><div class="footer-logo">URBI<span>.</span></div><p class="footer-desc">Архитектурная компания полного цикла.</p></div><div><div class="footer-heading">Направления</div><a href="gradostroenie.html" class="footer-link">Градостроение</a><a href="izhs.html" class="footer-link">ИЖС</a><a href="izhk.html" class="footer-link">ИЖК</a></div><div><div class="footer-heading">Компания</div><a href="about.html" class="footer-link">О компании</a><a href="cases.html" class="footer-link">Кейсы</a><a href="contacts.html" class="footer-link">Контакты</a></div><div><div class="footer-heading">Связаться</div><a href="tel:+77081587757" class="footer-link">+7 708 158 7757</a><a href="mailto:info@urbi.kz" class="footer-link">info@urbi.kz</a></div></div><div class="footer-bottom"><p class="footer-copy">&copy; 2026 URBI. urbi.kz</p><div class="footer-socials"><a href="#">IG</a><a href="#">TG</a><a href="#">YT</a></div></div></div></footer>
+<a href="https://wa.me/77081587757" target="_blank" class="wa-float"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.21l-.304-.18-2.868.852.852-2.868-.18-.304A8 8 0 1112 20z"/></svg></a>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.querySelector('.preloader').classList.add('done'),800));
+addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',scrollY>60));
+const b=document.querySelector('.burger'),mm=document.querySelector('.mob-menu');
+b.onclick=()=>{b.classList.toggle('on');mm.classList.toggle('on');document.body.style.overflow=mm.classList.contains('on')?'hidden':''};
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>{b.classList.remove('on');mm.classList.remove('on');document.body.style.overflow=''});
+(()=>{const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.rv').forEach(el=>o.observe(el))})();
+</script>
+</body>
+</html>

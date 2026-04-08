@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBI — Наши кейсы</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ===== FILTER TABS ===== */
+.filter-bar{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:48px 0 24px}
+.filter-btn{padding:10px 28px;background:transparent;border:2px solid var(--border);border-radius:50px;font-family:var(--font);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);cursor:pointer;transition:all .3s var(--ease)}
+.filter-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
+.filter-btn.active{background:var(--navy);border-color:var(--navy);color:var(--white)}
+
+/* ===== 3D CAROUSEL ===== */
+.carousel-section{padding:40px 0 100px;overflow:hidden}
+.carousel-wrap{position:relative;max-width:1400px;margin:0 auto;padding:0 48px}
+.carousel-track{display:flex;gap:32px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:60px 20px;-ms-overflow-style:none;scrollbar-width:none;perspective:1200px}
+.carousel-track::-webkit-scrollbar{display:none}
+
+.carousel-card{flex:0 0 380px;scroll-snap-align:center;border-radius:20px;overflow:hidden;background:var(--white);box-shadow:0 16px 48px rgba(13,27,42,.1);transition:all .5s var(--ease);transform:scale(.88) rotateY(4deg);opacity:.7;cursor:pointer;position:relative}
+.carousel-card:hover{box-shadow:0 24px 64px rgba(13,27,42,.18)}
+.carousel-card.active-card{transform:scale(1) rotateY(0deg);opacity:1;box-shadow:var(--shadow-float-hover)}
+.carousel-card-img{position:relative;height:320px;overflow:hidden}
+.carousel-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.carousel-card:hover .carousel-card-img img{transform:scale(1.05)}
+.carousel-card-cat{position:absolute;top:16px;left:16px;padding:6px 16px;background:rgba(13,27,42,.75);backdrop-filter:blur(8px);border-radius:6px;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
+.carousel-card-body{padding:24px 28px 28px}
+.carousel-card-name{font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.carousel-card-loc{font-size:.78rem;color:var(--text2);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.carousel-card-loc svg{width:14px;height:14px;fill:var(--blue);flex-shrink:0}
+.carousel-card-meta{display:flex;gap:20px;padding-top:16px;border-top:1px solid var(--border)}
+.carousel-card-meta-item{display:flex;flex-direction:column;gap:2px}
+.carousel-card-meta-label{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.carousel-card-meta-val{font-size:.85rem;font-weight:700;color:var(--navy)}
+
+/* Carousel nav */
+.carousel-nav{display:flex;justify-content:center;align-items:center;gap:24px;margin-top:8px}
+.carousel-arrow{width:52px;height:52px;border-radius:50%;border:2px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s var(--ease)}
+.carousel-arrow:hover{border-color:var(--blue);background:var(--blue);color:var(--white)}
+.carousel-arrow:hover svg{stroke:var(--white)}
+.carousel-arrow svg{width:20px;height:20px;stroke:var(--navy);stroke-width:2.5;fill:none;transition:stroke .3s}
+.carousel-dots{display:flex;gap:8px;align-items:center}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:var(--gray3);cursor:pointer;transition:all .3s}
+.carousel-dot.active{background:var(--blue);transform:scale(1.25)}
+
+/* ===== CTA SECTION ===== */
+.cta-section{background:var(--navy);padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 120%,rgba(45,110,181,.15),transparent)}
+.cta-section .sec-title{color:var(--white);margin-bottom:12px}
+.cta-section .sec-desc{color:rgba(255,255,255,.5);margin:0 auto 36px;text-align:center}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .carousel-card{flex:0 0 320px}
+  .carousel-card-img{height:260px}
+  .carousel-wrap{padding:0 32px}
+}
+@media(max-width:768px){
+  .filter-bar{gap:8px;padding:32px 0 16px}
+  .filter-btn{padding:8px 20px;font-size:.65rem}
+  .carousel-card{flex:0 0 280px}
+  .carousel-card-img{height:220px}
+  .carousel-track{gap:20px;padding:40px 12px}
+  .carousel-wrap{padding:0 20px}
+  .carousel-card-body{padding:18px 20px 22px}
+  .carousel-card-meta{gap:14px}
+  .cta-section{padding:72px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader"><span>URBI</span></div>
+
+<!-- GRID LINES -->
+<div class="grid-lines"><span></span><span></span><span></span></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">URBI<span>.</span></a>
+  <div class="nav-center">
+    <a href="index.html">Главная</a>
+    <a href="about.html">О компании</a>
+    <a href="#">Направления</a>
+    <a href="cases.html" class="active">Кейсы</a>
+    <a href="contacts.html">Контакты</a>
+  </div>
+  <a href="contacts.html" class="nav-cta">Обсудить проект</a>
+  <div class="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu">
+  <a href="index.html">Главная</a>
+  <a href="about.html">О компании</a>
+  <a href="#">Направления</a>
+  <a href="cases.html">Кейсы</a>
+  <a href="contacts.html">Контакты</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" alt="hero">
+  </div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="sec-tag rv">Портфолио</div>
+    <h1 class="sec-title rv rv-d1">Наши кейсы</h1>
+    <p class="sec-desc rv rv-d2">Место для текста — реализованные проекты компании URBI в области градостроения, индивидуального жилищного строительства и комплексного освоения территорий.</p>
+  </div>
+</section>
+
+<!-- STATUS STRIP -->
+<div class="strip">
+  <div class="strip-item"><span class="strip-dot"></span> 120+ проектов</div>
+  <div class="strip-item"><span class="strip-dot"></span> 8 лет опыта</div>
+  <div class="strip-item"><span class="strip-dot"></span> 15 городов</div>
+  <div class="strip-item"><span class="strip-dot"></span> Международное признание</div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="container">
+  <div class="filter-bar rv">
+    <button class="filter-btn active" data-filter="all">Все</button>
+    <button class="filter-btn" data-filter="urban">Градостроение</button>
+    <button class="filter-btn" data-filter="izhs">ИЖС</button>
+    <button class="filter-btn" data-filter="izhk">ИЖК</button>
+  </div>
+</div>
+
+<!-- 3D CAROUSEL -->
+<section class="carousel-section">
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Card 1 -->
+      <div class="carousel-card rv" data-cat="urban">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Проект 1">
+          <div class="carousel-card-cat">Градостроение</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Жилой комплекс «Ботаника»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Алматы, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">45 000 м&sup2;</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2024</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="carousel-card rv rv-d1" data-cat="izhs">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" alt="Проект 2">
+          <div class="carousel-card-cat">ИЖС</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Резиденция «Горный Вид»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Астана, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">380 м&sup2;</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2023</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="carousel-card rv rv-d2" data-cat="izhk">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?auto=format&fit=crop&w=800&q=80" alt="Проект 3">
+          <div class="carousel-card-cat">ИЖК</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Коттеджный посёлок «Зелёная Долина»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Шымкент, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">12 га</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2024</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="carousel-card rv rv-d3" data-cat="urban">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80" alt="Проект 4">
+          <div class="carousel-card-cat">Градостроение</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Микрорайон «Нурсая»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Караганда, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">78 000 м&sup2;</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2025</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="carousel-card rv" data-cat="izhs">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=800&q=80" alt="Проект 5">
+          <div class="carousel-card-cat">ИЖС</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Вилла «Каспий»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Актау, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">520 м&sup2;</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2023</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="carousel-card rv rv-d1" data-cat="urban">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Проект 6">
+          <div class="carousel-card-cat">Градостроение</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Бизнес-парк «Silk Way»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Астана, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">32 000 м&sup2;</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2025</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="carousel-card rv rv-d2" data-cat="izhk">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Проект 7">
+          <div class="carousel-card-cat">ИЖК</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Посёлок «Алтын Арман»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Алматы, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">25 га</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2024</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="carousel-card rv rv-d3" data-cat="izhs">
+        <div class="carousel-card-img">
+          <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=800&q=80" alt="Проект 8">
+          <div class="carousel-card-cat">ИЖС</div>
+        </div>
+        <div class="carousel-card-body">
+          <div class="carousel-card-name">Дом «Панорама»</div>
+          <div class="carousel-card-loc">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            Бурабай, Казахстан
+          </div>
+          <div class="carousel-card-meta">
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Площадь</span><span class="carousel-card-meta-val">290 м&sup2;</span></div>
+            <div class="carousel-card-meta-item"><span class="carousel-card-meta-label">Год</span><span class="carousel-card-meta-val">2025</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Carousel Navigation -->
+    <div class="carousel-nav">
+      <div class="carousel-arrow" id="carouselPrev">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <span class="carousel-dot active"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+      </div>
+      <div class="carousel-arrow" id="carouselNext">
+        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="sec-tag rv" style="margin:0 auto 18px;background:rgba(255,255,255,.08);color:var(--white)">Сотрудничество</div>
+    <h2 class="sec-title rv rv-d1">Обсудить ваш проект</h2>
+    <p class="sec-desc rv rv-d2">Место для текста — расскажите нам о вашей идее, и мы воплотим её в жизнь с учётом всех современных стандартов архитектуры и градостроения.</p>
+    <a href="contacts.html" class="btn-urban btn-urban-white rv rv-d3">
+      Связаться с нами
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">UR<span>BI</span></div>
+        <p class="footer-desc">Место для текста — архитектурная компания, создающая пространства для жизни и бизнеса.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Навигация</div>
+        <a href="index.html" class="footer-link">Главная</a>
+        <a href="about.html" class="footer-link">О компании</a>
+        <a href="cases.html" class="footer-link">Кейсы</a>
+        <a href="contacts.html" class="footer-link">Контакты</a>
+      </div>
+      <div>
+        <div class="footer-heading">Направления</div>
+        <a href="#" class="footer-link">Градостроение</a>
+        <a href="#" class="footer-link">ИЖС</a>
+        <a href="#" class="footer-link">ИЖК</a>
+        <a href="#" class="footer-link">Мастер-планы</a>
+      </div>
+      <div>
+        <div class="footer-heading">Контакты</div>
+        <a href="tel:+77000000000" class="footer-link">+7 (700) 000-00-00</a>
+        <a href="mailto:info@urbi.kz" class="footer-link">info@urbi.kz</a>
+        <a href="#" class="footer-link">Алматы, Казахстан</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 URBI. Все права защищены.</div>
+      <div class="footer-socials">
+        <a href="#">In</a>
+        <a href="#">Tg</a>
+        <a href="#">Yt</a>
+        <a href="#">Be</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/77000000000" target="_blank" class="wa-float">
+  <svg viewBox="0 0 32 32"><path d="M16.004 3.2C9.07 3.2 3.44 8.83 3.44 15.764c0 2.212.577 4.372 1.674 6.278L3.2 28.8l7.01-1.838a12.53 12.53 0 0 0 5.794 1.418c6.934 0 12.564-5.63 12.564-12.564S22.938 3.2 16.004 3.2zm0 22.946a10.34 10.34 0 0 1-5.276-1.446l-.378-.224-3.928 1.03 1.05-3.836-.248-.394A10.32 10.32 0 0 1 5.622 15.764c0-5.726 4.66-10.382 10.382-10.382 5.724 0 10.382 4.656 10.382 10.382 0 5.724-4.658 10.382-10.382 10.382zm5.692-7.774c-.312-.156-1.848-.912-2.134-1.016-.286-.104-.494-.156-.702.156s-.806 1.016-.988 1.224c-.182.208-.364.234-.676.078s-1.318-.486-2.51-1.55c-.928-.828-1.554-1.852-1.736-2.164s-.02-.482.136-.636c.14-.14.312-.364.468-.546.156-.182.208-.312.312-.52s.052-.39-.026-.546c-.078-.156-.702-1.692-.962-2.318-.254-.608-.512-.526-.702-.536l-.598-.01a1.148 1.148 0 0 0-.832.39c-.286.312-1.092 1.068-1.092 2.604s1.118 3.02 1.274 3.228c.156.208 2.2 3.358 5.33 4.71.744.322 1.326.514 1.778.658.748.238 1.43.204 1.968.124.6-.09 1.848-.756 2.108-1.486.26-.73.26-1.356.182-1.486-.078-.13-.286-.208-.598-.364z"/></svg>
+</a>
+
+<script>
+/* Preloader */
+window.addEventListener('load', () => setTimeout(() => document.querySelector('.preloader').classList.add('done'), 1200));
+
+/* Nav scroll */
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+
+/* Burger */
+const burger = document.querySelector('.burger');
+const mobMenu = document.querySelector('.mob-menu');
+burger.onclick = () => {
+  burger.classList.toggle('on');
+  mobMenu.classList.toggle('on');
+  document.body.style.overflow = mobMenu.classList.contains('on') ? 'hidden' : '';
+};
+mobMenu.querySelectorAll('a').forEach(a => a.onclick = () => {
+  burger.classList.remove('on');
+  mobMenu.classList.remove('on');
+  document.body.style.overflow = '';
+});
+
+/* Reveal on scroll */
+(() => {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('vis');
+  }), { threshold: .1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+})();
+
+/* Filter tabs */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  };
+});
+
+/* 3D Carousel */
+(() => {
+  const track = document.getElementById('carouselTrack');
+  const cards = track.querySelectorAll('.carousel-card');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  let currentIndex = 0;
+
+  function updateActiveCard() {
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+    let closestIdx = 0;
+    let closestDist = Infinity;
+
+    cards.forEach((card, i) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const dist = Math.abs(cardCenter - trackCenter);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIdx = i;
+      }
+    });
+
+    currentIndex = closestIdx;
+
+    cards.forEach((card, i) => {
+      if (i === closestIdx) {
+        card.classList.add('active-card');
+      } else {
+        card.classList.remove('active-card');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === closestIdx);
+    });
+  }
+
+  function scrollToCard(index) {
+    if (index < 0) index = 0;
+    if (index >= cards.length) index = cards.length - 1;
+    const card = cards[index];
+    const trackRect = track.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const offset = cardRect.left - trackRect.left + track.scrollLeft - (trackRect.width / 2 - cardRect.width / 2);
+    track.scrollTo({ left: offset, behavior: 'smooth' });
+  }
+
+  prevBtn.onclick = () => scrollToCard(currentIndex - 1);
+  nextBtn.onclick = () => scrollToCard(currentIndex + 1);
+
+  dots.forEach((dot, i) => {
+    dot.onclick = () => scrollToCard(i);
+  });
+
+  track.addEventListener('scroll', updateActiveCard);
+
+  /* Init: center first card */
+  setTimeout(() => {
+    scrollToCard(0);
+    updateActiveCard();
+  }, 1400);
+})();
+</script>
+</body>
+</html>
