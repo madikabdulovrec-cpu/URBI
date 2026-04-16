@@ -152,37 +152,53 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 .dir-z.dark .dir-z-cta{background:#fff;color:var(--navy)}
 .dir-z.dark .dir-z-cta:hover{background:var(--blue);color:#fff}
 
-/* ===== "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ КАЗАХСТАНУ" (zrobim world block) ===== */
-.world-z{position:relative;padding:140px 0;background:var(--navy);color:#fff;overflow:hidden;text-align:center}
-.world-z::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1604357209793-fca5dca89f97?w=1920&q=80') center/cover;opacity:.12;filter:grayscale(1)}
-.world-z-content{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 48px}
-.world-z-tag{font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:32px}
-.world-z-h{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;margin-bottom:48px;letter-spacing:-.02em}
-.world-z-h em{font-style:italic;color:var(--blue);font-weight:400}
-.world-z-cities{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:64px}
-.wzc{position:relative;cursor:default}
-.wzc-name{font-size:1.05rem;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.85);transition:color .3s}
-.wzc-dot{display:inline-block;width:6px;height:6px;background:var(--blue);border-radius:50%;margin-right:10px;animation:pulse 2s infinite;vertical-align:middle}
-.wzc:hover .wzc-name{color:var(--blue)}
+/* ===== WORLD MAP BLOCK (zrobim "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ МИРУ") ===== */
+.world-z{position:relative;min-height:100vh;background:#2c2c2c;color:#fff;overflow:hidden;display:flex;flex-direction:column}
+.world-z-inner{position:relative;z-index:2;flex:1;padding:80px 80px 120px 100px;display:flex;flex-direction:column}
+.world-z-title{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;letter-spacing:.02em;color:#fff;text-transform:uppercase;font-weight:300;margin-bottom:8px}
+.world-z-title .b{display:block;font-weight:700}
+.world-z-line{width:90px;height:3px;background:var(--blue);margin-top:18px}
+/* Map area */
+.world-z-map{flex:1;position:relative;margin-top:48px}
+.world-z-map svg{position:absolute;inset:0;width:100%;height:100%;stroke:rgba(255,255,255,.18);stroke-width:.5;fill:none}
+/* City labels positioned absolutely on map */
+.wm-city{position:absolute;font-weight:700;color:#fff;letter-spacing:.04em;text-transform:uppercase;cursor:default;transition:color .3s,transform .3s;white-space:nowrap;transform:translate(-50%,-50%)}
+.wm-city:hover{color:var(--blue);transform:translate(-50%,-50%) scale(1.1)}
+.wm-city.lg{font-size:1.5rem}
+.wm-city.md{font-size:1rem}
+.wm-city.sm{font-size:.78rem;color:rgba(255,255,255,.8)}
+.wm-city.xs{font-size:.68rem;color:rgba(255,255,255,.7)}
+/* Center divider line (vertical through middle like zrobim) */
+.world-z::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.06);z-index:1}
+.world-z-arrow{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:5;cursor:pointer}
+.world-z-arrow svg{width:28px;height:28px;animation:bounceY 2s ease-in-out infinite}
 
-/* ===== SERVICE BLOCK 50/50 (zrobim "Проектирование частных домов") ===== */
-.svc-z{padding:140px 0;background:#f0f0f0}
-.svc-z.dark{background:var(--navy);color:#fff}
-.svc-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.svc-z.flip .svc-z-grid{direction:rtl}
-.svc-z.flip .svc-z-grid > *{direction:ltr}
-.svc-z-img{aspect-ratio:4/5;overflow:hidden;background:#ddd;position:relative}
-.svc-z-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.svc-z-img:hover img{transform:scale(1.06)}
-.svc-z-img-num{position:absolute;top:24px;left:24px;font-size:.6rem;font-weight:700;letter-spacing:.4em;color:#fff;text-transform:uppercase;padding:8px 16px;background:rgba(13,27,42,.6);backdrop-filter:blur(8px)}
-.svc-z-text{padding:20px 0}
-.svc-z-tag{font-size:.6rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;display:flex;align-items:center;gap:14px}
-.svc-z-tag::before{content:'';width:30px;height:1px;background:var(--blue)}
-.svc-z-h{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.15;margin-bottom:32px;letter-spacing:-.01em}
-.svc-z-p{font-size:.95rem;line-height:1.95;margin-bottom:18px;color:var(--text2)}
-.svc-z.dark .svc-z-p{color:rgba(255,255,255,.6)}
-.svc-z-cta{margin-top:36px;display:inline-flex;align-items:center;gap:14px;padding:18px 0;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);border-bottom:2px solid var(--blue);transition:gap .3s}
-.svc-z-cta:hover{gap:24px}
+/* ===== SERVICE BLOCK — full screen 50/50 (zrobim "Проектирование частных домов") ===== */
+.svc-z{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#2c2c2c;color:#fff;overflow:hidden}
+.svc-z.flip{grid-template-columns:1fr 1fr}
+.svc-z.flip .svc-z-img{order:2}
+.svc-z.flip .svc-z-text{order:1}
+
+.svc-z-img{position:relative;overflow:hidden;background:#1a1a1a;height:100%}
+.svc-z-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s var(--ease)}
+.svc-z:hover .svc-z-img img{transform:scale(1.04)}
+
+.svc-z-text{padding:80px 100px;display:flex;flex-direction:column;justify-content:center;background:#2c2c2c;color:#fff;position:relative}
+
+/* Two-line title with bold second line + accent underline */
+.svc-z-title{font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:300;line-height:1.15;letter-spacing:.02em;color:#fff;text-transform:uppercase;margin-bottom:8px}
+.svc-z-title .b{display:block;font-weight:800}
+.svc-z-line{width:80px;height:3px;background:var(--blue);margin:20px 0 36px}
+
+.svc-z-p{font-size:.92rem;line-height:1.85;color:rgba(255,255,255,.55);margin-bottom:18px;max-width:480px;font-weight:400}
+
+/* Wide bordered button — like "ПОСМОТРЕТЬ РАБОТЫ" */
+.svc-z-btn{margin-top:40px;display:inline-block;width:100%;max-width:420px;padding:24px;text-align:center;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);font-family:inherit;font-size:.7rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;transition:all .4s var(--ease)}
+.svc-z-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff;letter-spacing:.32em}
+
+/* Bottom-center scroll arrow inside section */
+.svc-z-arrow{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:5;cursor:pointer;color:rgba(255,255,255,.4)}
+.svc-z-arrow svg{animation:bounceY 2s ease-in-out infinite}
 
 /* ===== VIDEO BLOCK (zrobim YouTube section) ===== */
 .video-z{padding:140px 0;background:#f0f0f0;text-align:center}
@@ -386,8 +402,13 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .info-z-grid{grid-template-columns:1fr;gap:48px}
   .info-z-side{position:static}
   .slogan-z-counters{grid-template-columns:1fr;gap:32px}
-  .svc-z-grid{grid-template-columns:1fr;gap:48px}
-  .svc-z.flip .svc-z-grid{direction:ltr}
+  .svc-z{grid-template-columns:1fr;min-height:auto}
+  .svc-z.flip{grid-template-columns:1fr}
+  .svc-z.flip .svc-z-img{order:1}.svc-z.flip .svc-z-text{order:2}
+  .svc-z-img{aspect-ratio:16/10;height:auto}
+  .svc-z-text{padding:60px 32px}
+  .world-z-inner{padding:60px 40px}
+  .wm-city.lg{font-size:1.05rem}.wm-city.md{font-size:.85rem}.wm-city.sm{font-size:.7rem}.wm-city.xs{font-size:.62rem}
   .contacts-z-grid{grid-template-columns:1fr 1fr;gap:32px}
   .form-z-form label:nth-child(even):not(.full){padding-left:0;border-left:none}
   .form-z-form label:nth-child(odd){padding-right:0}
@@ -398,9 +419,11 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .info-z-grid{padding:0 20px}
   .slogan-z{padding:80px 0}
   .slogan-z-counters{padding-left:20px;padding-right:20px;margin-top:64px}
-  .world-z,.svc-z,.video-z,.form-z,.contacts-z{padding:80px 0}
-  .world-z-content,.svc-z-grid,.video-z-frame,.form-z-card,.contacts-z-h,.contacts-z-grid,.foot-z-inner{padding-left:20px;padding-right:20px}
-  .world-z-cities{gap:20px;flex-direction:column}
+  .video-z,.form-z,.contacts-z{padding:80px 0}
+  .video-z-frame,.form-z-card,.contacts-z-h,.contacts-z-grid,.foot-z-inner{padding-left:20px;padding-right:20px}
+  .world-z-inner{padding:60px 24px 80px}
+  .svc-z-text{padding:48px 24px}
+  .svc-z-btn{padding:18px;font-size:.65rem}
   .form-z-form{grid-template-columns:1fr}
   .form-z-form label.full{grid-column:span 1}
   .form-z-submit-row{flex-direction:column;gap:10px}
@@ -562,19 +585,71 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   </div>
 </section>
 
-<!-- ===== "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ КАЗАХСТАНУ" ===== -->
+<!-- ===== WORLD MAP "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ МИРУ" ===== -->
 <section class="world-z">
-  <div class="world-z-content">
-    <div class="world-z-tag">— География работы</div>
-    <h2 class="world-z-h">Мы проектируем<br>по всему <em>Казахстану</em></h2>
-    <div class="world-z-cities">
-      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Алматы</span></div>
-      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Алатау</span></div>
-      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Шымкент</span></div>
-      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Астана</span></div>
-      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Караганда</span></div>
-      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Актау</span></div>
+  <div class="world-z-inner">
+    <h2 class="world-z-title">Мы проектируем<span class="b">по всему миру</span></h2>
+    <div class="world-z-line"></div>
+
+    <!-- Map container with cities -->
+    <div class="world-z-map">
+      <!-- Simplified continents outline (SVG paths) -->
+      <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+        <!-- Very rough continent outlines, just enough for ambient effect -->
+        <!-- North America -->
+        <path d="M50 130 Q80 100 130 110 L180 130 L220 160 L260 200 L240 240 L200 260 L150 270 L100 250 L70 200 Z"/>
+        <!-- South America -->
+        <path d="M220 290 L260 290 L280 330 L270 380 L240 420 L210 410 L195 360 Z"/>
+        <!-- Europe -->
+        <path d="M460 130 L520 120 L560 140 L550 180 L500 195 L470 180 Z"/>
+        <!-- Africa -->
+        <path d="M470 220 L540 210 L570 260 L560 320 L520 380 L480 380 L455 320 L450 260 Z"/>
+        <!-- Asia -->
+        <path d="M560 110 Q650 90 750 110 L850 130 L900 170 L880 220 L820 240 L750 250 L680 240 L620 230 L580 200 L560 160 Z"/>
+        <!-- Middle East -->
+        <path d="M580 220 L640 215 L660 260 L630 290 L595 280 Z"/>
+        <!-- India -->
+        <path d="M680 230 L720 230 L735 270 L710 300 L685 280 Z"/>
+        <!-- Australia -->
+        <path d="M820 340 Q860 330 900 350 L910 390 L870 410 L820 400 L805 370 Z"/>
+        <!-- Greenland -->
+        <path d="M380 80 L430 75 L440 120 L410 130 L385 110 Z"/>
+      </svg>
+
+      <!-- City labels — Almaty featured (URBI's home), other Kazakh cities + international -->
+      <span class="wm-city sm" style="top:50%;left:13%">САН-ФРАНЦИСКО</span>
+      <span class="wm-city sm" style="top:46%;left:23%">ЧИКАГО</span>
+      <span class="wm-city md" style="top:48%;left:32%">НЬЮ-ЙОРК</span>
+      <span class="wm-city xs" style="top:78%;left:25%">САН-ПАУЛУ</span>
+
+      <span class="wm-city sm" style="top:36%;left:46%">ЛОНДОН</span>
+      <span class="wm-city xs" style="top:34%;left:41%">ДУБЛИН</span>
+      <span class="wm-city sm" style="top:42%;left:48%">ПАРИЖ</span>
+      <span class="wm-city xs" style="top:48%;left:46%">МАДРИД</span>
+      <span class="wm-city xs" style="top:42%;left:53%">ВЕНА</span>
+      <span class="wm-city xs" style="top:36%;left:55%">ВАРШАВА</span>
+      <span class="wm-city xs" style="top:32%;left:58%">РИГА</span>
+      <span class="wm-city sm" style="top:30%;left:62%">МОСКВА</span>
+      <span class="wm-city xs" style="top:42%;left:60%">КИЕВ</span>
+      <span class="wm-city xs" style="top:50%;left:60%">СТАМБУЛ</span>
+      <span class="wm-city xs" style="top:54%;left:64%">ТБИЛИСИ</span>
+
+      <span class="wm-city sm" style="top:60%;left:62%">ДУБАЙ</span>
+      <span class="wm-city xs" style="top:62%;left:58%">ЭР-РИЯД</span>
+
+      <!-- KAZAKHSTAN — featured -->
+      <span class="wm-city lg" style="top:38%;left:69%;color:var(--blue)">АЛМАТЫ</span>
+      <span class="wm-city sm" style="top:44%;left:71%">АЛАТАУ</span>
+      <span class="wm-city sm" style="top:34%;left:67%">АСТАНА</span>
+      <span class="wm-city xs" style="top:46%;left:65%">ШЫМКЕНТ</span>
+
+      <span class="wm-city sm" style="top:42%;left:80%">УЛАН-БАТОР</span>
+      <span class="wm-city xs" style="top:54%;left:75%">ДЕЛИ</span>
+      <span class="wm-city xs" style="top:78%;left:84%">СИДНЕЙ</span>
     </div>
+  </div>
+  <div class="world-z-arrow" onclick="document.querySelectorAll('.svc-z')[0].scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M5 9l7 7 7-7" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/></svg>
   </div>
 </section>
 
@@ -701,54 +776,48 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   </div>
 </section>
 
-<!-- ===== SERVICE 1 — Градостроение (zrobim 50/50 style) ===== -->
+<!-- ===== SERVICE 1 — ГРАДОСТРОЕНИЕ (image left, text right) ===== -->
 <section class="svc-z" id="directions">
-  <div class="svc-z-grid">
-    <div class="svc-z-img">
-      <div class="svc-z-img-num">— Направление 01</div>
-      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=900&q=80" alt="">
-    </div>
-    <div class="svc-z-text">
-      <div class="svc-z-tag">Градостроение</div>
-      <h2 class="svc-z-h">Развитие территорий и мастер-планирование</h2>
-      <p class="svc-z-p">Когда вы доверяете нам участок земли — мы начинаем не с чертежей, а с глубокого анализа: оцениваем потенциал территории, рассчитываем плотность застройки, моделируем транспортные потоки и инженерную инфраструктуру.</p>
-      <p class="svc-z-p">URBI разрабатывает ПДП и мастер-планы, занимается генеральным планированием и зонированием, готовит расчёты ТЭП — всё для того, чтобы превратить землю в работающий девелоперский продукт с понятной экономикой и сроком окупаемости.</p>
-      <a href="gradostroenie.html" class="svc-z-cta">Посмотреть подход <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </div>
+  <div class="svc-z-img"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" alt="Градостроение"></div>
+  <div class="svc-z-text">
+    <h2 class="svc-z-title">Проектирование<span class="b">территорий и кварталов</span></h2>
+    <div class="svc-z-line"></div>
+    <p class="svc-z-p">Когда вы доверяете нам участок земли, мы начинаем не с чертежей, а с глубокого анализа: оцениваем потенциал территории, рассчитываем плотность застройки, моделируем транспортные потоки и инженерную инфраструктуру.</p>
+    <p class="svc-z-p">URBI разрабатывает ПДП и мастер-планы, занимается генеральным планированием и зонированием, готовит расчёты ТЭП — всё для того, чтобы превратить землю в работающий девелоперский продукт с понятной экономикой.</p>
+    <a href="gradostroenie.html" class="svc-z-btn">Посмотреть работы</a>
+  </div>
+  <div class="svc-z-arrow" onclick="document.querySelectorAll('.svc-z')[1].scrollIntoView({behavior:'smooth'})">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="1.5"/></svg>
   </div>
 </section>
 
-<!-- ===== SERVICE 2 — ИЖС (dark + flipped) ===== -->
-<section class="svc-z dark flip">
-  <div class="svc-z-grid">
-    <div class="svc-z-img">
-      <div class="svc-z-img-num">— Направление 02</div>
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="">
-    </div>
-    <div class="svc-z-text">
-      <div class="svc-z-tag">ИЖС и жилая застройка</div>
-      <h2 class="svc-z-h">Жильё, которое работает на капитализацию</h2>
-      <p class="svc-z-p">Жилая застройка — это не про красивые фасады, а про экономику. Мы проектируем жилые комплексы и индивидуальное жильё, рассчитывая каждый квадратный метр на капитализацию: оптимальная посадка зданий, продуманная типология, единый архитектурный облик.</p>
-      <p class="svc-z-p">Аналитический подход позволяет нам создавать проекты, в которых функциональность, бюджет и эстетика идут рука об руку. Мы исходим из задач клиента и рынка — и формируем продукт, который продаёт сам себя.</p>
-      <a href="izhs.html" class="svc-z-cta">Посмотреть подход <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </div>
+<!-- ===== SERVICE 2 — ИЖС (text left, image right — FLIPPED) ===== -->
+<section class="svc-z flip">
+  <div class="svc-z-img"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80" alt="ИЖС"></div>
+  <div class="svc-z-text">
+    <h2 class="svc-z-title">Современное<span class="b">жильё и ИЖС</span></h2>
+    <div class="svc-z-line"></div>
+    <p class="svc-z-p">Жилая застройка — это не про красивые фасады, а про экономику. Мы проектируем жилые комплексы и индивидуальное жильё, рассчитывая каждый квадратный метр на капитализацию: оптимальная посадка зданий, продуманная типология, единый архитектурный облик.</p>
+    <p class="svc-z-p">Аналитический подход позволяет нам создавать проекты, в которых функциональность, бюджет и эстетика идут рука об руку. Мы исходим из задач клиента и рынка, формируем продукт, который продаёт сам себя.</p>
+    <a href="izhs.html" class="svc-z-btn">Посмотреть работы</a>
+  </div>
+  <div class="svc-z-arrow" onclick="document.querySelectorAll('.svc-z')[2].scrollIntoView({behavior:'smooth'})">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="1.5"/></svg>
   </div>
 </section>
 
-<!-- ===== SERVICE 3 — ИЖК ===== -->
+<!-- ===== SERVICE 3 — ИЖК (image left, text right) ===== -->
 <section class="svc-z">
-  <div class="svc-z-grid">
-    <div class="svc-z-img">
-      <div class="svc-z-img-num">— Направление 03</div>
-      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt="">
-    </div>
-    <div class="svc-z-text">
-      <div class="svc-z-tag">ИЖК — комплексы и посёлки</div>
-      <h2 class="svc-z-h">Комплексное освоение территорий</h2>
-      <p class="svc-z-p">Одно из ключевых направлений работы URBI — проектирование коттеджных посёлков, малоэтажных жилых комплексов и таунхаусов. Мы применяем авторский подход, сформированный многолетним опытом и пониманием девелоперской логики.</p>
-      <p class="svc-z-p">Мастер-планирование, инженерные сети, благоустройство, единый архитектурный код — всё в одном проекте. Каждая территория получает целостную концепцию, которая повышает стоимость земли и привлекательность для конечных покупателей.</p>
-      <a href="izhk.html" class="svc-z-cta">Посмотреть подход <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </div>
+  <div class="svc-z-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80" alt="Посёлки и кварталы"></div>
+  <div class="svc-z-text">
+    <h2 class="svc-z-title">Проектирование<span class="b">посёлков и кварталов</span></h2>
+    <div class="svc-z-line"></div>
+    <p class="svc-z-p">Одним из ключевых направлений работы URBI является проектирование коттеджных посёлков и малоэтажных жилых комплексов разного масштаба и типологии. В работе мы применяем авторский подход, сформированный многолетним опытом в сфере архитектуры и девелопмента.</p>
+    <p class="svc-z-p">Мастер-планирование, инженерные сети, благоустройство, единый архитектурный код — всё в одном проекте. Каждая территория получает целостную концепцию, которая повышает стоимость земли.</p>
+    <a href="izhk.html" class="svc-z-btn">Посмотреть работы</a>
+  </div>
+  <div class="svc-z-arrow" onclick="document.querySelector('.video-z').scrollIntoView({behavior:'smooth'})">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="1.5"/></svg>
   </div>
 </section>
 
