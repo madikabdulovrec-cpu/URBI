@@ -152,6 +152,101 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 .dir-z.dark .dir-z-cta{background:#fff;color:var(--navy)}
 .dir-z.dark .dir-z-cta:hover{background:var(--blue);color:#fff}
 
+/* ===== "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ КАЗАХСТАНУ" (zrobim world block) ===== */
+.world-z{position:relative;padding:140px 0;background:var(--navy);color:#fff;overflow:hidden;text-align:center}
+.world-z::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1604357209793-fca5dca89f97?w=1920&q=80') center/cover;opacity:.12;filter:grayscale(1)}
+.world-z-content{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 48px}
+.world-z-tag{font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:32px}
+.world-z-h{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;margin-bottom:48px;letter-spacing:-.02em}
+.world-z-h em{font-style:italic;color:var(--blue);font-weight:400}
+.world-z-cities{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:64px}
+.wzc{position:relative;cursor:default}
+.wzc-name{font-size:1.05rem;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.85);transition:color .3s}
+.wzc-dot{display:inline-block;width:6px;height:6px;background:var(--blue);border-radius:50%;margin-right:10px;animation:pulse 2s infinite;vertical-align:middle}
+.wzc:hover .wzc-name{color:var(--blue)}
+
+/* ===== SERVICE BLOCK 50/50 (zrobim "Проектирование частных домов") ===== */
+.svc-z{padding:140px 0;background:#f0f0f0}
+.svc-z.dark{background:var(--navy);color:#fff}
+.svc-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.svc-z.flip .svc-z-grid{direction:rtl}
+.svc-z.flip .svc-z-grid > *{direction:ltr}
+.svc-z-img{aspect-ratio:4/5;overflow:hidden;background:#ddd;position:relative}
+.svc-z-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.svc-z-img:hover img{transform:scale(1.06)}
+.svc-z-img-num{position:absolute;top:24px;left:24px;font-size:.6rem;font-weight:700;letter-spacing:.4em;color:#fff;text-transform:uppercase;padding:8px 16px;background:rgba(13,27,42,.6);backdrop-filter:blur(8px)}
+.svc-z-text{padding:20px 0}
+.svc-z-tag{font-size:.6rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.svc-z-tag::before{content:'';width:30px;height:1px;background:var(--blue)}
+.svc-z-h{font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;line-height:1.15;margin-bottom:32px;letter-spacing:-.01em}
+.svc-z-p{font-size:.95rem;line-height:1.95;margin-bottom:18px;color:var(--text2)}
+.svc-z.dark .svc-z-p{color:rgba(255,255,255,.6)}
+.svc-z-cta{margin-top:36px;display:inline-flex;align-items:center;gap:14px;padding:18px 0;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);border-bottom:2px solid var(--blue);transition:gap .3s}
+.svc-z-cta:hover{gap:24px}
+
+/* ===== VIDEO BLOCK (zrobim YouTube section) ===== */
+.video-z{padding:140px 0;background:#f0f0f0;text-align:center}
+.video-z-tag{font-size:.6rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.video-z-h{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;color:var(--navy);line-height:1.15;margin-bottom:14px;letter-spacing:-.01em}
+.video-z-sub{font-size:.95rem;color:var(--text2);margin-bottom:48px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7}
+.video-z-frame{position:relative;max-width:1100px;margin:0 auto;padding:0 48px}
+.video-z-embed{position:relative;width:100%;aspect-ratio:16/9;border-radius:0;overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(13,27,42,.2)}
+.video-z-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-z-poster{position:absolute;inset:0;background:cover center;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+.video-z-poster img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
+.video-z-play{position:absolute;width:96px;height:96px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .3s,background .3s;box-shadow:0 8px 32px rgba(45,110,181,.5)}
+.video-z-play:hover{transform:scale(1.1);background:#fff}
+.video-z-play:hover svg{fill:var(--blue)}
+.video-z-play svg{width:32px;height:32px;fill:#fff;margin-left:4px;transition:fill .3s}
+.video-z-channel{margin-top:24px;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text3);font-weight:700}
+.video-z-channel span{color:var(--blue)}
+
+/* ===== FORM BLOCK "Напишите нам" (zrobim) ===== */
+.form-z{padding:140px 0;background:#fff;border-top:1px solid var(--border);text-align:center}
+.form-z-tag{font-size:.6rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.form-z-h{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:var(--navy);line-height:1.05;letter-spacing:-.02em;margin-bottom:18px}
+.form-z-h em{font-style:italic;color:var(--blue);font-weight:400}
+.form-z-sub{font-size:1rem;color:var(--text2);max-width:540px;margin:0 auto 56px;line-height:1.7}
+.form-z-card{max-width:720px;margin:0 auto;padding:0 48px}
+.form-z-form{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border)}
+.form-z-form label{display:block;text-align:left;padding:24px 0 8px;border-bottom:1px solid var(--border);position:relative}
+.form-z-form label.full{grid-column:span 2}
+.form-z-form .lbl-text{font-size:.6rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.form-z-form input,.form-z-form textarea{width:100%;padding:8px 0 14px;border:none;outline:none;font-family:Verdana,sans-serif;font-size:1rem;color:var(--navy);background:transparent;resize:vertical}
+.form-z-form input:focus,.form-z-form textarea:focus{border-color:var(--blue)}
+.form-z-form label:focus-within{border-bottom-color:var(--blue)}
+.form-z-form label:nth-child(odd){padding-right:24px}
+.form-z-form label:nth-child(even):not(.full){padding-left:24px;border-left:1px solid var(--border)}
+.form-z-submit-row{margin-top:48px;display:flex;justify-content:flex-end;gap:14px}
+.form-z-submit{padding:20px 56px;background:var(--navy);color:#fff;border:none;font-family:inherit;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);transition:all .3s}
+.form-z-submit:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,110,181,.35)}
+.form-z-submit-wa{background:#25d366;display:inline-flex;align-items:center;gap:10px}
+.form-z-submit-wa:hover{background:#1ea952}
+.form-z-submit-wa svg{width:16px;height:16px;fill:currentColor}
+
+/* ===== CONTACTS — multi-column (zrobim style) ===== */
+.contacts-z{padding:120px 0;background:var(--navy);color:#fff}
+.contacts-z-h{max-width:1340px;margin:0 auto 64px;padding:0 48px;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;letter-spacing:-.02em}
+.contacts-z-h em{color:var(--blue);font-style:italic;font-weight:400}
+.contacts-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:48px}
+.czc{padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
+.czc-tag{font-size:.55rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.czc-h{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:14px}
+.czc-line{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:6px}
+.czc-line a{color:rgba(255,255,255,.85);transition:color .3s}
+.czc-line a:hover{color:var(--blue)}
+.czc-name{font-size:.78rem;color:var(--blue);font-weight:700;margin-top:10px;letter-spacing:.05em}
+
+/* ===== MINIMAL FOOTER (zrobim) ===== */
+.foot-z{background:var(--navy);color:rgba(255,255,255,.4);padding:32px 0;border-top:1px solid rgba(255,255,255,.08)}
+.foot-z-inner{max-width:1340px;margin:0 auto;padding:0 48px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot-z-copy{font-size:.72rem;letter-spacing:.05em}
+.foot-z-copy a{color:rgba(255,255,255,.6);transition:color .3s}
+.foot-z-copy a:hover{color:var(--blue)}
+.foot-z-socs{display:flex;gap:14px}
+.foot-z-socs a{font-size:.7rem;color:rgba(255,255,255,.4);transition:color .3s;letter-spacing:.1em;text-transform:uppercase}
+.foot-z-socs a:hover{color:var(--blue)}
+
 /* ===== TEAM CYCLOTRON — horizontal auto-scroll (zrobim style) ===== */
 .team-z{padding:140px 0;background:#fff;border-top:1px solid var(--border);overflow:hidden}
 .team-z-head{max-width:1340px;margin:0 auto 64px;padding:0 48px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
@@ -291,6 +386,11 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .info-z-grid{grid-template-columns:1fr;gap:48px}
   .info-z-side{position:static}
   .slogan-z-counters{grid-template-columns:1fr;gap:32px}
+  .svc-z-grid{grid-template-columns:1fr;gap:48px}
+  .svc-z.flip .svc-z-grid{direction:ltr}
+  .contacts-z-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .form-z-form label:nth-child(even):not(.full){padding-left:0;border-left:none}
+  .form-z-form label:nth-child(odd){padding-right:0}
 }
 @media(max-width:768px){
   .top-logo{left:20px}.top-logo-text{font-size:.85rem}
@@ -298,6 +398,17 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .info-z-grid{padding:0 20px}
   .slogan-z{padding:80px 0}
   .slogan-z-counters{padding-left:20px;padding-right:20px;margin-top:64px}
+  .world-z,.svc-z,.video-z,.form-z,.contacts-z{padding:80px 0}
+  .world-z-content,.svc-z-grid,.video-z-frame,.form-z-card,.contacts-z-h,.contacts-z-grid,.foot-z-inner{padding-left:20px;padding-right:20px}
+  .world-z-cities{gap:20px;flex-direction:column}
+  .form-z-form{grid-template-columns:1fr}
+  .form-z-form label.full{grid-column:span 1}
+  .form-z-submit-row{flex-direction:column;gap:10px}
+  .form-z-submit{width:100%}
+  .contacts-z-grid{grid-template-columns:1fr}
+  .foot-z-inner{flex-direction:column;text-align:center}
+  .video-z-play{width:64px;height:64px}
+  .video-z-play svg{width:24px;height:24px}
   .side-menu{width:48px}
   .consult-corner{padding:14px 18px;font-size:.6rem}
   .consult-corner::before{display:none}
@@ -338,7 +449,7 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 </div>
 
 <!-- Consult button -->
-<div class="consult-corner" onclick="document.getElementById('contact-z').scrollIntoView({behavior:'smooth'})">Консультация</div>
+<div class="consult-corner" onclick="document.getElementById('contact-z').scrollIntoView({behavior:'smooth'})">Заявка</div>
 
 <!-- Lang switch bottom right -->
 <div class="lang-corner">
@@ -451,63 +562,19 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   </div>
 </section>
 
-<!-- ===== DIRECTION 1 — GRADOSTROENIE ===== -->
-<section class="dir-z" id="directions">
-  <div class="dir-z-img">
-    <span class="dir-z-num">01</span>
-    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" alt="">
-  </div>
-  <div class="dir-z-content">
-    <div class="dir-z-tag">— Направление 01</div>
-    <h2 class="dir-z-h">Градостроение<br>и развитие территорий</h2>
-    <p class="dir-z-p">Разработка ПДП и мастер-планов, генеральное планирование, транспортное моделирование — основа любого крупного проекта.</p>
-    <ul class="dir-z-list">
-      <li>Разработка ПДП и мастер-планов</li>
-      <li>Генеральное планирование и зонирование</li>
-      <li>Транспортное моделирование</li>
-      <li>Расчёт ТЭП и плотности застройки</li>
-    </ul>
-    <a href="gradostroenie.html" class="dir-z-cta">Перейти <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
-  </div>
-</section>
-
-<!-- ===== DIRECTION 2 — IZHS — INVERTED & DARK ===== -->
-<section class="dir-z dark flip">
-  <div class="dir-z-img">
-    <span class="dir-z-num">02</span>
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" alt="">
-  </div>
-  <div class="dir-z-content">
-    <div class="dir-z-tag">— Направление 02</div>
-    <h2 class="dir-z-h">ИЖС<br>и жилая застройка</h2>
-    <p class="dir-z-p">Проектирование жилых комплексов и индивидуальных домов с учётом экономики проекта и капитализации каждого квадратного метра.</p>
-    <ul class="dir-z-list">
-      <li>Проектирование ЖК и ИЖС</li>
-      <li>Оптимальная посадка зданий</li>
-      <li>Разработка типологии жилья</li>
-      <li>Архитектурно-градостроительный облик</li>
-    </ul>
-    <a href="izhs.html" class="dir-z-cta">Перейти <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
-  </div>
-</section>
-
-<!-- ===== DIRECTION 3 — IZHK ===== -->
-<section class="dir-z">
-  <div class="dir-z-img">
-    <span class="dir-z-num">03</span>
-    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80" alt="">
-  </div>
-  <div class="dir-z-content">
-    <div class="dir-z-tag">— Направление 03</div>
-    <h2 class="dir-z-h">ИЖК — комплексное<br>освоение территорий</h2>
-    <p class="dir-z-p">Коттеджные посёлки, малоэтажные комплексы — мастер-планирование, инженерные сети, единый архитектурный код.</p>
-    <ul class="dir-z-list">
-      <li>Мастер-планирование территорий</li>
-      <li>Благоустройство и ландшафт</li>
-      <li>Инженерное обеспечение</li>
-      <li>Единый архитектурный код</li>
-    </ul>
-    <a href="izhk.html" class="dir-z-cta">Перейти <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+<!-- ===== "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ КАЗАХСТАНУ" ===== -->
+<section class="world-z">
+  <div class="world-z-content">
+    <div class="world-z-tag">— География работы</div>
+    <h2 class="world-z-h">Мы проектируем<br>по всему <em>Казахстану</em></h2>
+    <div class="world-z-cities">
+      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Алматы</span></div>
+      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Алатау</span></div>
+      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Шымкент</span></div>
+      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Астана</span></div>
+      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Караганда</span></div>
+      <div class="wzc"><span class="wzc-dot"></span><span class="wzc-name">Актау</span></div>
+    </div>
   </div>
 </section>
 
@@ -634,145 +701,160 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   </div>
 </section>
 
-<!-- ===== AWARDS / EXPERTISE MARQUEE ===== -->
-<section class="awards-z">
-  <div class="awards-z-label">— Что мы делаем —</div>
-  <div class="awards-z-track">
-    <div class="aw-item">Архитектура</div>
-    <div class="aw-item">Инфраструктура</div>
-    <div class="aw-item">Экономика проекта</div>
-    <div class="aw-item">Девелоперский анализ</div>
-    <div class="aw-item">ПДП</div>
-    <div class="aw-item">Мастер-планы</div>
-    <div class="aw-item">Транспортное моделирование</div>
-    <div class="aw-item">Расчёт ТЭП</div>
-    <div class="aw-item">Авторский надзор</div>
-    <!-- duplicate -->
-    <div class="aw-item">Архитектура</div>
-    <div class="aw-item">Инфраструктура</div>
-    <div class="aw-item">Экономика проекта</div>
-    <div class="aw-item">Девелоперский анализ</div>
-    <div class="aw-item">ПДП</div>
-    <div class="aw-item">Мастер-планы</div>
-    <div class="aw-item">Транспортное моделирование</div>
-    <div class="aw-item">Расчёт ТЭП</div>
-    <div class="aw-item">Авторский надзор</div>
-  </div>
-</section>
-
-<!-- ===== PROJECTS ===== -->
-<section class="proj-z" id="cases">
-  <div class="proj-z-head">
-    <div class="proj-z-head-left">
-      <div class="proj-z-tag">— Реализованные кейсы</div>
-      <h2 class="proj-z-h">Знаковые<br>проекты URBI</h2>
-    </div>
-    <a href="cases.html" class="about-z-cta">Все кейсы <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
-  </div>
-  <div class="proj-z-grid">
-    <div class="proj-z-card">
-      <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=900&q=80" alt="">
-      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Градостроение</div><div class="proj-z-card-name">Вертипорт</div><div class="proj-z-card-meta">Алатау · Реализован</div></div>
-    </div>
-    <div class="proj-z-card">
-      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt="">
-      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Градостроение</div><div class="proj-z-card-name">Колизей</div><div class="proj-z-card-meta">Алатау · Реализован</div></div>
-    </div>
-    <div class="proj-z-card tall">
-      <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=900&q=80" alt="">
-      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Инфраструктура</div><div class="proj-z-card-name">Кейпарк</div><div class="proj-z-card-meta">Алатау · Реализован</div></div>
-    </div>
-    <div class="proj-z-card tall">
+<!-- ===== SERVICE 1 — Градостроение (zrobim 50/50 style) ===== -->
+<section class="svc-z" id="directions">
+  <div class="svc-z-grid">
+    <div class="svc-z-img">
+      <div class="svc-z-img-num">— Направление 01</div>
       <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=900&q=80" alt="">
-      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Мастер-план</div><div class="proj-z-card-name">ПДП Алатау</div><div class="proj-z-card-meta">Алатау · В работе</div></div>
+    </div>
+    <div class="svc-z-text">
+      <div class="svc-z-tag">Градостроение</div>
+      <h2 class="svc-z-h">Развитие территорий и мастер-планирование</h2>
+      <p class="svc-z-p">Когда вы доверяете нам участок земли — мы начинаем не с чертежей, а с глубокого анализа: оцениваем потенциал территории, рассчитываем плотность застройки, моделируем транспортные потоки и инженерную инфраструктуру.</p>
+      <p class="svc-z-p">URBI разрабатывает ПДП и мастер-планы, занимается генеральным планированием и зонированием, готовит расчёты ТЭП — всё для того, чтобы превратить землю в работающий девелоперский продукт с понятной экономикой и сроком окупаемости.</p>
+      <a href="gradostroenie.html" class="svc-z-cta">Посмотреть подход <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
     </div>
   </div>
-  <div class="proj-z-cta"><a href="cases.html">Все кейсы <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
 </section>
 
-<!-- ===== MARKETS ===== -->
-<section class="markets-z">
-  <div class="markets-z-head">
-    <div class="proj-z-tag">— Рынки роста</div>
-    <h2 class="proj-z-h">Где мы работаем</h2>
+<!-- ===== SERVICE 2 — ИЖС (dark + flipped) ===== -->
+<section class="svc-z dark flip">
+  <div class="svc-z-grid">
+    <div class="svc-z-img">
+      <div class="svc-z-img-num">— Направление 02</div>
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="">
+    </div>
+    <div class="svc-z-text">
+      <div class="svc-z-tag">ИЖС и жилая застройка</div>
+      <h2 class="svc-z-h">Жильё, которое работает на капитализацию</h2>
+      <p class="svc-z-p">Жилая застройка — это не про красивые фасады, а про экономику. Мы проектируем жилые комплексы и индивидуальное жильё, рассчитывая каждый квадратный метр на капитализацию: оптимальная посадка зданий, продуманная типология, единый архитектурный облик.</p>
+      <p class="svc-z-p">Аналитический подход позволяет нам создавать проекты, в которых функциональность, бюджет и эстетика идут рука об руку. Мы исходим из задач клиента и рынка — и формируем продукт, который продаёт сам себя.</p>
+      <a href="izhs.html" class="svc-z-cta">Посмотреть подход <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
   </div>
-  <div class="markets-z-grid">
-    <div class="market-card">
-      <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=1200&q=80" alt="">
-      <div class="market-card-overlay">
-        <div class="market-card-loc">— Казахстан</div>
-        <div class="market-card-name">Алатау</div>
-        <div class="market-card-desc">Ключевая точка роста с утверждённым мастер-планом. Уже есть реализованные проекты: Вертипорт, Колизей, Кейпарк.</div>
+</section>
+
+<!-- ===== SERVICE 3 — ИЖК ===== -->
+<section class="svc-z">
+  <div class="svc-z-grid">
+    <div class="svc-z-img">
+      <div class="svc-z-img-num">— Направление 03</div>
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt="">
+    </div>
+    <div class="svc-z-text">
+      <div class="svc-z-tag">ИЖК — комплексы и посёлки</div>
+      <h2 class="svc-z-h">Комплексное освоение территорий</h2>
+      <p class="svc-z-p">Одно из ключевых направлений работы URBI — проектирование коттеджных посёлков, малоэтажных жилых комплексов и таунхаусов. Мы применяем авторский подход, сформированный многолетним опытом и пониманием девелоперской логики.</p>
+      <p class="svc-z-p">Мастер-планирование, инженерные сети, благоустройство, единый архитектурный код — всё в одном проекте. Каждая территория получает целостную концепцию, которая повышает стоимость земли и привлекательность для конечных покупателей.</p>
+      <a href="izhk.html" class="svc-z-cta">Посмотреть подход <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIDEO BLOCK (zrobim YouTube) ===== -->
+<section class="video-z">
+  <div class="video-z-tag">— Новое видео на нашем канале</div>
+  <h2 class="video-z-h">Архитектура Алатау: обзор<br>знаковых проектов URBI</h2>
+  <p class="video-z-sub">Рассказываем о нашем подходе к девелоперскому продукту и показываем реализованные объекты в новом районе Алматы</p>
+  <div class="video-z-frame">
+    <div class="video-z-embed" id="videoBox">
+      <div class="video-z-poster" id="videoPoster">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80" alt="">
+        <div class="video-z-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
       </div>
     </div>
-    <div class="market-card">
-      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" alt="">
-      <div class="market-card-overlay">
-        <div class="market-card-loc">— Казахстан</div>
-        <div class="market-card-name">Шымкент</div>
-        <div class="market-card-desc">Один из самых быстрорастущих рынков Казахстана. Низкая конкуренция по качеству архитектуры и инженерии.</div>
-      </div>
+    <div class="video-z-channel">URBI · <span>YouTube</span></div>
+  </div>
+</section>
+
+<!-- ===== FORM BLOCK "Напишите нам" ===== -->
+<section class="form-z" id="contact-z">
+  <div class="form-z-tag">— Оставьте заявку</div>
+  <h2 class="form-z-h">Напишите <em>нам</em></h2>
+  <p class="form-z-sub">И мы ответим на любые интересующие вас вопросы. Бесплатный предварительный анализ вашего участка — за 2 рабочих дня.</p>
+
+  <div class="form-z-card">
+    <form class="form-z-form" action="#" method="POST">
+      <label>
+        <div class="lbl-text">Имя *</div>
+        <input type="text" name="name" placeholder="Ваше имя" required>
+      </label>
+      <label>
+        <div class="lbl-text">Телефон *</div>
+        <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+      </label>
+      <label>
+        <div class="lbl-text">E-mail *</div>
+        <input type="email" name="email" placeholder="email@example.com" required>
+      </label>
+      <label>
+        <div class="lbl-text">Город / участок</div>
+        <input type="text" name="city" placeholder="Где находится ваш участок?">
+      </label>
+      <label class="full">
+        <div class="lbl-text">Комментарий к заявке *</div>
+        <textarea name="comment" rows="4" placeholder="Расскажите о вашем проекте, площади участка, задачах..." required></textarea>
+      </label>
+    </form>
+    <div class="form-z-submit-row">
+      <a href="https://wa.me/77081587757" target="_blank" class="form-z-submit form-z-submit-wa">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+        WhatsApp
+      </a>
+      <button type="submit" form="" class="form-z-submit" onclick="document.querySelector('.form-z-form').submit();return false;">Отправить</button>
     </div>
   </div>
 </section>
 
-<!-- ===== QUOTE ===== -->
-<section class="quote-z">
-  <div class="quote-z-content">
-    <div class="quote-z-text">Сочетание технической грамотности и девелоперского мышления для создания продукта, который продаёт сам себя</div>
-    <div class="quote-z-author">— Основатель URBI</div>
+<!-- ===== CONTACTS — multi-column ===== -->
+<section class="contacts-z">
+  <h2 class="contacts-z-h">Контакты <em>URBI</em></h2>
+  <div class="contacts-z-grid">
+    <div class="czc">
+      <div class="czc-tag">— Заказать проект</div>
+      <div class="czc-h">Алматы</div>
+      <div class="czc-line">Время работы: с 09:00 до 18:00</div>
+      <div class="czc-line">Выходные: суббота, воскресенье</div>
+      <div class="czc-line"><a href="tel:+77081587757">+7 708 158 7757</a></div>
+      <div class="czc-line"><a href="mailto:info@urbi.kz">info@urbi.kz</a></div>
+      <div class="czc-name">URBI · Главный офис</div>
+    </div>
+    <div class="czc">
+      <div class="czc-tag">— Сотрудничество</div>
+      <div class="czc-h">Партнёры</div>
+      <div class="czc-line">По вопросам стратегического партнёрства и совместных проектов</div>
+      <div class="czc-line"><a href="tel:+77081587757">+7 708 158 7757</a></div>
+      <div class="czc-line"><a href="mailto:info@urbi.kz">info@urbi.kz</a></div>
+      <div class="czc-name">URBI</div>
+    </div>
+    <div class="czc">
+      <div class="czc-tag">— Подрядчикам</div>
+      <div class="czc-h">Тендеры</div>
+      <div class="czc-line">Запросы по подрядным работам, поставкам и инженерным услугам</div>
+      <div class="czc-line"><a href="mailto:contractor@urbi.kz">contractor@urbi.kz</a></div>
+      <div class="czc-name">Отдел закупок</div>
+    </div>
+    <div class="czc">
+      <div class="czc-tag">— Медиа</div>
+      <div class="czc-h">Пресса и PR</div>
+      <div class="czc-line">Предложения медиа-партнёрства, интервью, публикации</div>
+      <div class="czc-line"><a href="mailto:pr@urbi.kz">pr@urbi.kz</a></div>
+      <div class="czc-name">PR-департамент</div>
+    </div>
   </div>
 </section>
 
-<!-- ===== CTA ===== -->
-<section class="cta-z" id="contact-z">
-  <h2 class="cta-z-h">Покажем, сколько можно <em>заработать</em><br>с вашего участка</h2>
-  <p class="cta-z-p">Бесплатный предварительный анализ территории: расчёт плотности, ТЭП, окупаемости и стратегия развития</p>
-  <div class="cta-z-buttons">
-    <a href="contacts.html" class="cta-z-btn cta-z-btn-primary">Оставить заявку</a>
-    <a href="https://wa.me/77081587757" target="_blank" class="cta-z-btn cta-z-btn-wa">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-      WhatsApp
-    </a>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer-z">
-  <div class="footer-z-grid">
-    <div>
-      <div class="fz-logo">
-        <div class="fz-logo-mark">
-          <span></span><span class="b"></span><span></span>
-          <span class="b"></span><span></span><span class="b"></span>
-          <span></span><span class="b"></span><span></span>
-        </div>
-        <div class="fz-logo-text">URBI</div>
-      </div>
-      <p class="fz-desc">Архитектурно-инженерная компания нового поколения. Формируем девелоперский продукт и увеличиваем стоимость земли.</p>
+<!-- ===== MINIMAL FOOTER ===== -->
+<footer class="foot-z">
+  <div class="foot-z-inner">
+    <div class="foot-z-copy">© <span id="ftYear">2026</span> · ТОО «URBI» · <a href="#">Политика конфиденциальности</a></div>
+    <div class="foot-z-socs">
+      <a href="#">Instagram</a>
+      <a href="#">Telegram</a>
+      <a href="#">YouTube</a>
+      <a href="#">Behance</a>
     </div>
-    <div>
-      <div class="fz-h">— Направления</div>
-      <a href="gradostroenie.html" class="fz-link">Градостроение</a>
-      <a href="izhs.html" class="fz-link">ИЖС</a>
-      <a href="izhk.html" class="fz-link">ИЖК</a>
-    </div>
-    <div>
-      <div class="fz-h">— Компания</div>
-      <a href="about.html" class="fz-link">О компании</a>
-      <a href="cases.html" class="fz-link">Кейсы</a>
-      <a href="contacts.html" class="fz-link">Контакты</a>
-    </div>
-    <div>
-      <div class="fz-h">— Связь</div>
-      <a href="tel:+77081587757" class="fz-link">+7 708 158 7757</a>
-      <a href="mailto:info@urbi.kz" class="fz-link">info@urbi.kz</a>
-      <a href="https://wa.me/77081587757" class="fz-link">WhatsApp</a>
-    </div>
-  </div>
-  <div class="fz-bottom">
-    <div class="fz-copy">© 2026 URBI · urbi.kz · Все права защищены</div>
-    <div class="fz-socials"><a href="#">IG</a><a href="#">TG</a><a href="#">YT</a><a href="#">BE</a></div>
   </div>
 </footer>
 
@@ -810,6 +892,20 @@ mm.querySelectorAll('a').forEach(a=>a.onclick=()=>{mm.classList.remove('on');doc
 // Reveal on scroll
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Auto year in footer
+(function(){const y=document.getElementById('ftYear');if(y)y.textContent=new Date().getFullYear();})();
+
+// Video poster — click loads YouTube iframe
+(function(){
+  const poster = document.getElementById('videoPoster');
+  const box = document.getElementById('videoBox');
+  if (!poster || !box) return;
+  poster.addEventListener('click', ()=>{
+    // Replace poster with YouTube embed (URBI demo — change to real video ID)
+    box.innerHTML = '<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  });
+})();
 
 // "Читать больше" toggle (block 2)
 (function(){
