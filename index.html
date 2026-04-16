@@ -3,196 +3,268 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URBI — Архитектурная компания</title>
+<title>URBI — Архитектурно-инженерная компания</title>
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ===== HERO — DARK ARCHITECTURAL ===== */
-.hero{position:relative;min-height:100vh;background:var(--navy);overflow:hidden}
+/* ===== ZROBIM-STYLE OVERRIDES ===== */
+body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 
-/* Full-bleed background */
-.hero-bg{position:absolute;inset:0;z-index:1}
-.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25) contrast(1.1);animation:heroScale 30s ease-in-out infinite alternate}
-@keyframes heroScale{0%{transform:scale(1.06)}100%{transform:scale(1)}}
+/* ===== ARCHITECTURAL GRID — full page background lines ===== */
+.arch-grid{position:fixed;inset:0;z-index:1;pointer-events:none}
+.arch-grid span{position:absolute;top:0;width:1px;height:100%;background:rgba(13,27,42,.05)}
+.arch-grid span:nth-child(1){left:25%}
+.arch-grid span:nth-child(2){left:50%}
+.arch-grid span:nth-child(3){left:75%}
 
-/* Gradient overlays */
-.hero-overlay{position:absolute;inset:0;z-index:2;background:
-  linear-gradient(180deg,rgba(13,27,42,.7) 0%,rgba(13,27,42,.2) 35%,rgba(13,27,42,.65) 100%),
-  linear-gradient(90deg,rgba(13,27,42,.75) 0%,transparent 55%)}
+/* ===== SIDE PANEL "МЕНЮ" (zrobim style) ===== */
+.side-menu{position:fixed;left:0;top:0;bottom:0;width:64px;z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:transparent}
+.side-menu-icon{display:flex;flex-direction:column;gap:5px}
+.side-menu-icon span{width:22px;height:1.5px;background:var(--navy);transition:all .3s}
+.side-menu-icon span:nth-child(1){width:14px}
+.side-menu-icon span:nth-child(3){width:18px}
+.side-menu-text{writing-mode:vertical-rl;text-orientation:mixed;font-size:.65rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-top:6px}
+.side-menu:hover .side-menu-icon span{background:var(--blue);width:22px}
 
-/* Blueprint grid lines */
-.hero-blueprint{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
-.hero-blueprint .vl{position:absolute;top:0;width:1px;height:100%;background:rgba(45,110,181,.06)}
-.hero-blueprint .vl:nth-child(1){left:12%}.hero-blueprint .vl:nth-child(2){left:36%}
-.hero-blueprint .vl:nth-child(3){left:64%}.hero-blueprint .vl:nth-child(4){left:88%}
-.hero-blueprint .hl{position:absolute;left:0;width:100%;height:1px;background:rgba(45,110,181,.06)}
-.hero-blueprint .hl:nth-child(5){top:25%}.hero-blueprint .hl:nth-child(6){top:50%}.hero-blueprint .hl:nth-child(7){top:75%}
-/* Corner marks — like architectural drawing */
-.hero-blueprint .corner{position:absolute;width:40px;height:40px;border-color:rgba(45,110,181,.15);border-style:solid;border-width:0}
-.hero-blueprint .corner-tl{top:8%;left:8%;border-top-width:1px;border-left-width:1px}
-.hero-blueprint .corner-tr{top:8%;right:8%;border-top-width:1px;border-right-width:1px}
-.hero-blueprint .corner-bl{bottom:12%;left:8%;border-bottom-width:1px;border-left-width:1px}
-.hero-blueprint .corner-br{bottom:12%;right:8%;border-bottom-width:1px;border-right-width:1px}
-/* Dimension line */
-.hero-blueprint .dim{position:absolute;display:flex;align-items:center;gap:8px}
-.hero-blueprint .dim-line{height:1px;background:rgba(45,110,181,.12);flex:1}
-.hero-blueprint .dim-text{font-size:.5rem;letter-spacing:.2em;color:rgba(45,110,181,.2);text-transform:uppercase;white-space:nowrap}
-.hero-blueprint .dim-h{bottom:12%;left:8%;right:8%}
-.hero-blueprint .dim-v{top:8%;bottom:12%;left:8%;flex-direction:column;width:1px}
-.hero-blueprint .dim-v .dim-line{width:1px;height:100%;flex:1}
+/* ===== TOP CONSULT BUTTON (zrobim style) ===== */
+.consult-corner{position:fixed;top:0;right:0;z-index:90;background:var(--blue);padding:22px 32px;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;cursor:pointer;transition:background .3s;display:flex;align-items:center;gap:8px}
+.consult-corner::before{content:'';width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 2s infinite}
+.consult-corner:hover{background:var(--navy)}
 
-/* Content */
-.hero-inner{position:relative;z-index:10;max-width:1340px;margin:0 auto;padding:160px 48px 120px 100px;display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:center;min-height:100vh}
+/* ===== TOP LOGO (zrobim style) ===== */
+.top-logo{position:fixed;top:24px;left:96px;z-index:91;display:flex;align-items:center;gap:10px}
+.top-logo-mark{display:grid;grid-template-columns:repeat(3,7px);grid-template-rows:repeat(3,7px);gap:3px}
+.top-logo-mark span{background:var(--navy);width:7px;height:7px}
+.top-logo-mark span.b{background:var(--blue)}
+.top-logo-text{font-size:.95rem;font-weight:900;letter-spacing:.18em;color:var(--navy);line-height:1}
+.top-logo-sub{font-size:.55rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;line-height:1;margin-top:3px}
 
-/* Left */
-.hero-left{}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 22px;background:rgba(45,110,181,.08);backdrop-filter:blur(12px);border:1px solid rgba(45,110,181,.12);border-radius:4px;font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--blue);margin-bottom:36px;opacity:0;animation:fadeUp .8s .4s var(--ease) forwards}
-.hero-eyebrow .pdot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
-.hero-h1{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:24px;letter-spacing:-.01em;opacity:0;animation:fadeUp .9s .6s var(--ease) forwards}
-.hero-h1 em{font-style:italic;font-weight:400;color:var(--blue)}
-.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.45);max-width:460px;line-height:1.85;margin-bottom:44px;opacity:0;animation:fadeUp .9s .8s var(--ease) forwards}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s 1s var(--ease) forwards}
+/* ===== LANG SWITCH BOTTOM RIGHT ===== */
+.lang-corner{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
+.lang-globe{width:36px;height:36px;border:1.5px solid var(--text3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--text3);transition:all .3s}
+.lang-globe:hover{border-color:var(--blue);color:var(--blue)}
+.lang-corner-text{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)}
 
-/* Right — stacked info blocks */
-.hero-right{display:flex;flex-direction:column;gap:16px;opacity:0;animation:fadeUp 1s 1.1s var(--ease) forwards}
-.hero-card{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06);border-radius:var(--r);padding:24px 28px;transition:all .4s var(--ease);position:relative}
-.hero-card:hover{background:rgba(255,255,255,.08);border-color:rgba(45,110,181,.2);transform:translateX(-8px)}
-.hero-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:0;transition:opacity .3s;border-radius:2px}
-.hero-card:hover::after{opacity:1}
-.hc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-.hc-label{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.hc-live{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:rgba(45,110,181,.12);border-radius:4px;font-size:.48rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
-.hc-live-dot{width:4px;height:4px;border-radius:50%;background:var(--blue);animation:pulse 1.5s infinite}
-.hc-num{font-size:2rem;font-weight:900;color:var(--white);line-height:1}
-.hc-sub{font-size:.7rem;color:rgba(255,255,255,.25);margin-top:3px}
-.hc-row{display:flex;align-items:baseline;gap:8px}
-.hc-up{font-size:.62rem;color:var(--blue);font-weight:700}
+/* ===== HERO — FULLSCREEN ===== */
+.hero-z{position:relative;height:100vh;min-height:720px;background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-z-bg{position:absolute;inset:0;z-index:1}
+.hero-z-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.9);animation:slowZoom 30s ease-in-out infinite alternate}
+@keyframes slowZoom{0%{transform:scale(1.05)}100%{transform:scale(1)}}
+.hero-z-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(13,27,42,.3) 0%,rgba(13,27,42,.55) 100%)}
 
-/* Large project preview card */
-.hero-project{border-radius:var(--r2);overflow:hidden;margin-top:8px}
-.hero-project img{width:100%;aspect-ratio:16/7;object-fit:cover;filter:brightness(.7);transition:all .5s var(--ease)}
-.hero-project:hover img{filter:brightness(.9);transform:scale(1.02)}
-.hero-project-info{background:rgba(255,255,255,.04);backdrop-filter:blur(16px);padding:16px 20px;border:1px solid rgba(255,255,255,.06);border-top:none;display:flex;justify-content:space-between;align-items:center}
-.hero-project-name{font-size:.85rem;font-weight:700;color:var(--white)}
-.hero-project-meta{font-size:.65rem;color:rgba(255,255,255,.3)}
-.hero-project-tag{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;background:rgba(45,110,181,.12);border-radius:3px;color:var(--blue);font-weight:700}
+/* Architectural cross lines on hero */
+.hero-z-cross{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hero-z-cross::before,.hero-z-cross::after{content:'';position:absolute;background:rgba(255,255,255,.12)}
+.hero-z-cross::before{left:0;right:0;top:50%;height:1px}
+.hero-z-cross::after{top:0;bottom:0;left:50%;width:1px}
+.hero-z-cross .v25{position:absolute;top:0;bottom:0;left:25%;width:1px;background:rgba(255,255,255,.06)}
+.hero-z-cross .v75{position:absolute;top:0;bottom:0;left:75%;width:1px;background:rgba(255,255,255,.06)}
 
-/* Bottom bar */
-.hero-bar{position:absolute;bottom:0;left:0;right:0;z-index:12;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06);background:rgba(13,27,42,.5);backdrop-filter:blur(12px)}
-.hero-stats{display:flex;gap:48px}
-.hs-num{font-size:1.3rem;font-weight:900;color:var(--blue)}
-.hs-label{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:2px}
-.hero-arrow{display:flex;align-items:center;gap:10px;cursor:pointer}
-.hero-arrow span{font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.2)}
-.hero-arrow svg{animation:arrowBounce 2s ease-in-out infinite}
-@keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.hero-h1,.hero-desc,.hero-ctas,.hero-right{transform:translateY(24px)}
-.hero-eyebrow{transform:none}
+.hero-z-content{position:relative;z-index:10;text-align:center;padding:0 32px;max-width:1100px}
+.hero-z-tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:32px;opacity:0;animation:zFade 1s .4s forwards}
+.hero-z-h1{font-size:clamp(2.4rem,5.5vw,5rem);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.01em;margin-bottom:0;opacity:0;animation:zFade 1.2s .8s forwards}
+.hero-z-h1 em{font-style:italic;font-weight:400;color:var(--blue)}
+.hero-z-sub{margin-top:32px;font-size:.95rem;color:rgba(255,255,255,.65);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.85;opacity:0;animation:zFade 1.2s 1.1s forwards}
+.hero-z-arrow{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:14px;cursor:pointer;opacity:0;animation:zFade 1.2s 1.5s forwards}
+.hero-z-arrow span{font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.hero-z-arrow svg{animation:bounceY 2s ease-in-out infinite}
+@keyframes bounceY{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes zFade{to{opacity:1}}
 
-/* ===== DIRECTIONS ===== */
-.dirs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.dir-card{position:relative;aspect-ratio:3/4;border-radius:var(--r2);overflow:hidden;cursor:pointer}
-.dir-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.dir-card:hover img{transform:scale(1.06)}
-.dir-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.9) 0%,rgba(13,27,42,.1) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background .4s}
-.dir-card:hover .dir-over{background:linear-gradient(to top,rgba(13,27,42,.95) 0%,rgba(45,110,181,.1) 100%)}
-.dir-num{font-size:.55rem;letter-spacing:.3em;color:var(--blue);margin-bottom:8px;text-transform:uppercase}
-.dir-name{font-size:1.4rem;font-weight:900;color:var(--white);margin-bottom:6px}
-.dir-desc{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:20px;line-height:1.6}
-.dir-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);border:1.5px solid rgba(255,255,255,.2);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:all .3s}
-.dir-card:hover .dir-btn{border-color:var(--blue);background:rgba(45,110,181,.15);color:var(--blue)}
-.dir-btn svg{transition:transform .3s}.dir-card:hover .dir-btn svg{transform:translateX(4px)}
+/* ===== SLOGAN SECTION (zrobim — "ВЫХОДЯ ЗА РАМКИ") ===== */
+.slogan-sec{padding:160px 0;text-align:center;background:#f0f0f0;position:relative}
+.slogan-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:36px}
+.slogan-h{font-size:clamp(3rem,8vw,7rem);font-weight:900;color:var(--navy);line-height:.95;letter-spacing:-.02em;text-transform:uppercase}
+.slogan-h em{font-style:italic;color:var(--blue);font-weight:400}
+.slogan-sub{margin-top:36px;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3)}
 
-/* ===== ABOUT PREVIEW ===== */
-.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center}
-.about-img{border-radius:var(--r3);overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow-float)}
-.about-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
-.about-img:hover img{transform:scale(1.03)}
-.about-badge{position:absolute;bottom:-16px;right:-16px;background:var(--navy);border-radius:var(--r2);padding:22px 26px;text-align:center;box-shadow:0 12px 40px rgba(13,27,42,.2)}
-.about-badge-num{font-size:2rem;font-weight:900;color:var(--blue);line-height:1}
-.about-badge-sub{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px}
-.stats-row{display:flex;gap:20px;margin-top:44px;flex-wrap:wrap}
-.stat-card{flex:1;min-width:100px;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--r);text-align:center}
-.stat-card-num{font-size:1.6rem;font-weight:900;color:var(--blue);line-height:1}
-.stat-card-label{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-top:4px}
+/* ===== STATS BIG NUMBERS (zrobim) ===== */
+.bignums{padding:120px 0;background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.bignums-grid{max-width:1200px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.bn{text-align:center;padding:20px;border-right:1px solid var(--border)}
+.bn:last-child{border-right:none}
+.bn-num{font-size:clamp(3rem,5vw,4.5rem);font-weight:900;color:var(--blue);line-height:1}
+.bn-label{font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--text2);margin-top:14px}
 
-/* ===== CASES PREVIEW ===== */
-.cases-scroll{display:flex;gap:20px;overflow-x:auto;padding:20px 0 40px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.cases-scroll::-webkit-scrollbar{display:none}
-.case-card{flex:0 0 320px;scroll-snap-align:center;border-radius:var(--r2);overflow:hidden;position:relative;cursor:pointer;box-shadow:var(--shadow-float);transition:transform .4s var(--ease)}
-.case-card:hover{transform:translateY(-8px)}
-.case-card img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.case-info{padding:20px;background:var(--white)}
-.case-cat{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:4px}
-.case-name{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px}
-.case-meta{font-size:.72rem;color:var(--text3)}
+/* ===== ABOUT BLOCK 50/50 (zrobim style) ===== */
+.about-z{padding:140px 0;background:#f0f0f0}
+.about-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-z-img{aspect-ratio:4/5;overflow:hidden;background:#ddd;position:relative}
+.about-z-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.about-z-img:hover img{transform:scale(1.05)}
+.about-z-img::after{content:'URBI';position:absolute;bottom:24px;left:24px;font-size:1rem;letter-spacing:.3em;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.about-z-text{padding:20px 0}
+.about-z-tag{font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.about-z-h{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:900;color:var(--navy);line-height:1.1;margin-bottom:32px}
+.about-z-p{font-size:.95rem;color:var(--text2);line-height:1.95;margin-bottom:20px}
+.about-z-cta{margin-top:32px;display:inline-flex;align-items:center;gap:12px;padding:18px 0;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);border-bottom:2px solid var(--blue);transition:gap .3s}
+.about-z-cta:hover{gap:20px}
 
-/* ===== CTA ===== */
-.cta-section{background:var(--navy);border-radius:var(--r3);padding:80px;text-align:center;margin:0 48px}
-.cta-section .sec-title{color:var(--white)}
-.cta-section .sec-desc{color:rgba(255,255,255,.45);margin:0 auto 32px}
+/* ===== DIRECTIONS — FULLSCREEN ALTERNATING ===== */
+.dir-z{position:relative;min-height:90vh;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;overflow:hidden}
+.dir-z.flip{grid-template-columns:1fr 1fr;direction:rtl}
+.dir-z.flip > *{direction:ltr}
+.dir-z-img{position:relative;overflow:hidden;background:#1a1a1a}
+.dir-z-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.dir-z:hover .dir-z-img img{transform:scale(1.04)}
+.dir-z-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,27,42,.3),rgba(13,27,42,.5));z-index:1}
+.dir-z-num{position:absolute;top:48px;left:48px;z-index:2;font-size:5rem;font-weight:900;color:rgba(255,255,255,.15);line-height:1}
+.dir-z-content{padding:120px 80px;display:flex;flex-direction:column;justify-content:center;background:#fff}
+.dir-z.dark .dir-z-content{background:var(--navy);color:#fff}
+.dir-z-tag{font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.dir-z-h{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:24px;color:var(--navy)}
+.dir-z.dark .dir-z-h{color:#fff}
+.dir-z-p{font-size:.95rem;color:var(--text2);line-height:1.95;margin-bottom:32px;max-width:480px}
+.dir-z.dark .dir-z-p{color:rgba(255,255,255,.55)}
+.dir-z-list{margin-bottom:36px}
+.dir-z-list li{font-size:.85rem;color:var(--text2);padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.dir-z.dark .dir-z-list li{color:rgba(255,255,255,.7);border-bottom:1px solid rgba(255,255,255,.08)}
+.dir-z-list li::before{content:'—';color:var(--blue);font-weight:700}
+.dir-z-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;padding:18px 36px;background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);transition:all .3s}
+.dir-z-cta:hover{background:var(--navy);transform:translateX(4px)}
+.dir-z.dark .dir-z-cta{background:#fff;color:var(--navy)}
+.dir-z.dark .dir-z-cta:hover{background:var(--blue);color:#fff}
 
-/* ===== FORM ===== */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.form-card{background:var(--white);padding:44px;border-radius:var(--r2);border:1px solid var(--border);box-shadow:var(--shadow-float)}
-.fg{margin-bottom:18px}
-.fg label{display:block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;font-weight:700}
-.fg input,.fg textarea{width:100%;padding:13px 16px;background:var(--gray);border:1px solid var(--border);border-radius:var(--r);font-family:var(--font);font-size:.85rem;color:var(--text);outline:none;transition:border-color .3s}
-.fg input:focus,.fg textarea:focus{border-color:var(--blue)}
-.fg textarea{resize:vertical;min-height:90px}
-.form-submit{width:100%;padding:16px;background:var(--navy);color:var(--white);border:none;border-radius:8px;font-family:var(--font);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);transition:all .3s}
-.form-submit:hover{background:var(--blue);box-shadow:0 6px 24px var(--blue-glow)}
-.wa-cta{display:flex;align-items:center;gap:16px;padding:20px 28px;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.15);border-radius:var(--r);margin-top:16px;transition:all .3s}
-.wa-cta:hover{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.3)}
-.wa-cta svg{width:32px;height:32px;fill:#25d366;flex-shrink:0}
-.wa-cta-text{font-size:.85rem;font-weight:700;color:var(--text)}
-.wa-cta-num{font-size:.75rem;color:var(--text3)}
+/* ===== AWARDS MARQUEE (zrobim style) ===== */
+.awards-z{padding:80px 0;background:var(--navy);color:#fff;overflow:hidden}
+.awards-z-label{text-align:center;font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:48px}
+.awards-z-track{display:flex;width:max-content;animation:scrollX 40s linear infinite;align-items:center}
+.aw-item{flex-shrink:0;padding:0 56px;font-size:.95rem;font-weight:700;color:rgba(255,255,255,.7);white-space:nowrap;display:flex;align-items:center;gap:14px}
+.aw-item::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+
+/* ===== PROJECTS BIG GRID (zrobim) ===== */
+.proj-z{padding:140px 0;background:#f0f0f0}
+.proj-z-head{max-width:1340px;margin:0 auto 64px;padding:0 48px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
+.proj-z-head-left{}
+.proj-z-tag{font-size:.65rem;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.proj-z-h{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;color:var(--navy);line-height:1.1}
+.proj-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.proj-z-card{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:pointer}
+.proj-z-card.tall{aspect-ratio:3/4}
+.proj-z-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.proj-z-card:hover img{transform:scale(1.06)}
+.proj-z-card-info{position:absolute;bottom:0;left:0;right:0;padding:36px;background:linear-gradient(to top,rgba(13,27,42,.95),transparent);color:#fff;transition:padding .4s}
+.proj-z-card:hover .proj-z-card-info{padding-bottom:48px}
+.proj-z-card-cat{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:8px}
+.proj-z-card-name{font-size:1.6rem;font-weight:900;margin-bottom:6px}
+.proj-z-card-meta{font-size:.78rem;color:rgba(255,255,255,.6)}
+.proj-z-cta{text-align:center;margin-top:64px}
+.proj-z-cta a{display:inline-flex;align-items:center;gap:12px;padding:20px 48px;background:var(--navy);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);transition:all .3s}
+.proj-z-cta a:hover{background:var(--blue);transform:translateY(-3px);box-shadow:0 12px 32px rgba(45,110,181,.35)}
+
+/* ===== MARKETS (zrobim regions style) ===== */
+.markets-z{padding:140px 0;background:#fff;border-top:1px solid var(--border)}
+.markets-z-head{max-width:1340px;margin:0 auto 64px;padding:0 48px;text-align:center}
+.markets-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.market-card{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer}
+.market-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);filter:brightness(.6)}
+.market-card:hover img{transform:scale(1.05);filter:brightness(.7)}
+.market-card-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:48px;color:#fff;background:linear-gradient(to top,rgba(13,27,42,.85) 0%,transparent 60%)}
+.market-card-loc{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:700}
+.market-card-name{font-size:2.2rem;font-weight:900;margin-bottom:14px}
+.market-card-desc{font-size:.85rem;color:rgba(255,255,255,.65);max-width:380px;line-height:1.7}
+
+/* ===== QUOTE / PHILOSOPHY ===== */
+.quote-z{padding:160px 0;background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
+.quote-z::before{content:'\201C';position:absolute;top:40px;left:50%;transform:translateX(-50%);font-size:14rem;color:rgba(45,110,181,.1);font-family:Georgia,serif;line-height:1}
+.quote-z-content{max-width:900px;margin:0 auto;padding:0 48px;position:relative;z-index:2}
+.quote-z-text{font-size:clamp(1.4rem,2.8vw,2.4rem);font-weight:400;font-style:italic;line-height:1.45;margin-bottom:32px}
+.quote-z-author{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);font-weight:700}
+
+/* ===== CTA SECTION ===== */
+.cta-z{padding:120px 0;background:#f0f0f0;text-align:center}
+.cta-z-h{font-size:clamp(2rem,4vw,3.4rem);font-weight:900;color:var(--navy);line-height:1.1;margin-bottom:24px;max-width:760px;margin-left:auto;margin-right:auto}
+.cta-z-h em{font-style:italic;color:var(--blue);font-weight:400}
+.cta-z-p{font-size:1rem;color:var(--text2);max-width:540px;margin:0 auto 40px;line-height:1.8}
+.cta-z-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta-z-btn{padding:20px 44px;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border:none;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);transition:all .3s}
+.cta-z-btn-primary{background:var(--navy);color:#fff}
+.cta-z-btn-primary:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,110,181,.35)}
+.cta-z-btn-wa{background:#25d366;color:#fff;display:inline-flex;align-items:center;gap:10px}
+.cta-z-btn-wa:hover{background:#1ea952;transform:translateY(-2px)}
+
+/* ===== FOOTER (zrobim minimal) ===== */
+.footer-z{background:var(--navy);color:#fff;padding:80px 0 32px}
+.footer-z-grid{max-width:1340px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.08)}
+.fz-logo{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.fz-logo-mark{display:grid;grid-template-columns:repeat(3,8px);grid-template-rows:repeat(3,8px);gap:3px}
+.fz-logo-mark span{background:#fff;width:8px;height:8px}
+.fz-logo-mark span.b{background:var(--blue)}
+.fz-logo-text{font-size:1.2rem;font-weight:900;letter-spacing:.2em}
+.fz-desc{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.8;max-width:300px}
+.fz-h{font-size:.6rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.fz-link{display:block;font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:12px;transition:color .3s}
+.fz-link:hover{color:var(--blue)}
+.fz-bottom{max-width:1340px;margin:0 auto;padding:24px 48px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.fz-copy{font-size:.75rem;color:rgba(255,255,255,.3)}
+.fz-socials{display:flex;gap:14px}
+.fz-socials a{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:rgba(255,255,255,.5);transition:all .3s}
+.fz-socials a:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ===== RESPONSIVE ===== */
-/* Nav on dark hero */
-.hero .nav-logo,.hero .burger span{color:var(--white) !important;background:var(--white) !important}
-.hero .nav-center a{color:rgba(255,255,255,.5) !important}
-.hero .nav-center a:hover,.hero .nav-center a.active{color:var(--white) !important}
-.hero .nav-center a::after{background:var(--blue) !important}
-.hero .nav-cta{background:var(--blue) !important}
-
 @media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;padding:140px 32px 100px}
-  .hero-right{display:none}
-  .hero-blueprint .corner,.hero-blueprint .dim{display:none}
-  .dirs-grid{grid-template-columns:1fr 1fr}
-  .about-grid{grid-template-columns:1fr;gap:40px}
-  .form-grid{grid-template-columns:1fr}
+  .about-z-grid{grid-template-columns:1fr;gap:48px;padding:0 32px}
+  .dir-z{grid-template-columns:1fr;min-height:auto}
+  .dir-z.flip{grid-template-columns:1fr;direction:ltr}
+  .dir-z-img{aspect-ratio:16/10}
+  .dir-z-content{padding:64px 32px}
+  .proj-z-grid,.markets-z-grid{grid-template-columns:1fr}
+  .footer-z-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .bignums-grid{grid-template-columns:1fr;gap:32px}
+  .bn{border-right:none;border-bottom:1px solid var(--border);padding-bottom:32px}
+  .bn:last-child{border-bottom:none;padding-bottom:0}
 }
 @media(max-width:768px){
-  .hero-inner{padding:120px 20px 80px}
-  .hero-bar{padding:18px 20px}.hero-stats{gap:28px}
-  .dirs-grid{grid-template-columns:1fr}
-  .cta-section{margin:0 20px;padding:48px 24px;border-radius:var(--r2)}
-  .case-card{flex:0 0 280px}
+  .top-logo{left:20px}.top-logo-text{font-size:.85rem}
+  .side-menu{width:48px}
+  .consult-corner{padding:14px 18px;font-size:.6rem}
+  .consult-corner::before{display:none}
+  .lang-corner{bottom:14px;right:14px}
+  .slogan-sec{padding:80px 20px}
+  .about-z,.proj-z,.markets-z,.quote-z,.cta-z{padding:64px 0}
+  .footer-z-grid{grid-template-columns:1fr;padding:0 20px}
+  .fz-bottom{padding:24px 20px 0;flex-direction:column;text-align:center}
+  .market-card-name{font-size:1.5rem}
+  .dir-z-content{padding:48px 20px}
 }
 </style>
 </head>
 <body>
 
 <div class="preloader"><span>URBI</span></div>
-<div class="grid-lines"><span></span><span></span><span></span></div>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="index.html" class="nav-logo">URBI<span>.</span></a>
-  <div class="nav-center">
-    <a href="index.html" class="active">Главная</a>
-    <a href="about.html">О компании</a>
-    <a href="cases.html">Кейсы</a>
-    <a href="gradostroenie.html">Градостроение</a>
-    <a href="izhs.html">ИЖС</a>
-    <a href="izhk.html">ИЖК</a>
-    <a href="contacts.html">Контакты</a>
+<!-- Architectural grid background -->
+<div class="arch-grid"><span></span><span></span><span></span></div>
+
+<!-- Top logo (zrobim style — pixel mark + text) -->
+<a href="index.html" class="top-logo">
+  <div class="top-logo-mark">
+    <span></span><span class="b"></span><span></span>
+    <span class="b"></span><span></span><span class="b"></span>
+    <span></span><span class="b"></span><span></span>
   </div>
-  <a href="contacts.html" class="nav-cta">Обсудить проект</a>
-  <div class="burger"><span></span><span></span><span></span></div>
-</nav>
+  <div>
+    <div class="top-logo-text">URBI</div>
+    <div class="top-logo-sub">architects</div>
+  </div>
+</a>
+
+<!-- Side menu vertical -->
+<div class="side-menu" onclick="document.querySelector('.mob-menu').classList.add('on');document.body.style.overflow='hidden'">
+  <div class="side-menu-icon"><span></span><span></span><span></span></div>
+  <div class="side-menu-text">МЕНЮ</div>
+</div>
+
+<!-- Consult button -->
+<div class="consult-corner" onclick="document.getElementById('contact-z').scrollIntoView({behavior:'smooth'})">Консультация</div>
+
+<!-- Lang switch bottom right -->
+<div class="lang-corner">
+  <div class="lang-globe">RU</div>
+  <div class="lang-corner-text">Язык</div>
+</div>
+
+<!-- Mobile/full menu overlay -->
 <div class="mob-menu">
   <a href="index.html">Главная</a>
   <a href="about.html">О компании</a>
@@ -203,306 +275,269 @@
   <a href="contacts.html">Контакты</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <!-- Background image — cityscape / architecture -->
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80" alt="">
+<!-- ===== HERO ===== -->
+<section class="hero-z">
+  <div class="hero-z-bg"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80" alt=""></div>
+  <div class="hero-z-overlay"></div>
+  <div class="hero-z-cross"><div class="v25"></div><div class="v75"></div></div>
+  <div class="hero-z-content">
+    <div class="hero-z-tag">URBI · Архитектурно-инженерная компания</div>
+    <h1 class="hero-z-h1">Архитектура,<br>которая <em>зарабатывает</em></h1>
+    <p class="hero-z-sub">Формируем девелоперский продукт из вашей земли — через грамотное планирование, инженерные расчёты и качественную архитектуру</p>
   </div>
-  <div class="hero-overlay"></div>
-
-  <!-- Blueprint grid -->
-  <div class="hero-blueprint">
-    <div class="vl"></div><div class="vl"></div><div class="vl"></div><div class="vl"></div>
-    <div class="hl"></div><div class="hl"></div><div class="hl"></div>
-    <div class="corner corner-tl"></div>
-    <div class="corner corner-tr"></div>
-    <div class="corner corner-bl"></div>
-    <div class="corner corner-br"></div>
-    <div class="dim dim-h"><div class="dim-line"></div><div class="dim-text">URBI.KZ</div><div class="dim-line"></div></div>
+  <div class="hero-z-arrow" onclick="document.querySelector('.slogan-sec').scrollIntoView({behavior:'smooth'})">
+    <span>Скролл</span>
+    <svg width="22" height="22" fill="none"><path d="M5 9l6 6 6-6" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/></svg>
   </div>
+</section>
 
-  <div class="hero-inner">
-    <!-- Left — main message -->
-    <div class="hero-left">
-      <div class="hero-eyebrow"><span class="pdot"></span>Архитектурно-инженерная компания · Казахстан</div>
-      <h1 class="hero-h1">Формируем девелоперский<br><em>продукт из вашей земли</em></h1>
-      <p class="hero-desc">Мы не просто проектируем — мы увеличиваем стоимость земли через грамотное планирование, современную инфраструктуру и качественную архитектуру</p>
-      <div class="hero-ctas">
-        <a href="contacts.html" class="btn-urban" style="background:var(--blue);color:#fff">Обсудить проект <svg width="16" height="16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
-        <a href="cases.html" class="btn-urban" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)">Портфолио</a>
-      </div>
-    </div>
+<!-- ===== SLOGAN — full screen statement ===== -->
+<section class="slogan-sec">
+  <div class="slogan-eyebrow">— Слоган компании —</div>
+  <h2 class="slogan-h">Формируем<br><em>девелоперский</em><br>продукт</h2>
+  <div class="slogan-sub">URBI · 2026</div>
+</section>
 
-    <!-- Right — data cards + project preview -->
-    <div class="hero-right">
-      <div class="hero-card">
-        <div class="hc-top"><span class="hc-label">Проекты</span><div class="hc-live"><span class="hc-live-dot"></span>Live</div></div>
-        <div class="hc-row"><div class="hc-num">150+</div><span class="hc-up">↑ 23 в 2025</span></div>
-        <div class="hc-sub">Вертипорт · Колизей · Кейпарк и другие</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hc-top"><span class="hc-label">В работе</span><div class="hc-live"><span class="hc-live-dot"></span>Active</div></div>
-        <div class="hc-num">12</div>
-        <div class="hc-sub">Алатау · Шымкент · Алматы</div>
-      </div>
-
-      <div class="hero-card">
-        <div class="hc-top"><span class="hc-label">Международные награды</span></div>
-        <div class="hc-num">30+</div>
-        <div class="hc-sub">Девелоперский анализ · ПДП · Мастер-планы</div>
-      </div>
-
-      <div class="hero-project">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="">
-        <div class="hero-project-info">
-          <div>
-            <div class="hero-project-name">Villa Horizon</div>
-            <div class="hero-project-meta">Алматы · 620 м² · 2025</div>
-          </div>
-          <div class="hero-project-tag">В реализации</div>
-        </div>
-      </div>
-    </div>
+<!-- ===== BIG NUMBERS ===== -->
+<section class="bignums">
+  <div class="bignums-grid">
+    <div class="bn"><div class="bn-num">3+</div><div class="bn-label">Реализованных<br>знаковых объекта</div></div>
+    <div class="bn"><div class="bn-num">8</div><div class="bn-label">Лет<br>опыта на рынке</div></div>
+    <div class="bn"><div class="bn-num">2</div><div class="bn-label">Ключевых<br>рынка роста</div></div>
   </div>
+</section>
 
-  <!-- Bottom bar -->
-  <div class="hero-bar">
-    <div class="hero-stats">
-      <div><div class="hs-num">12+</div><div class="hs-label">Лет опыта</div></div>
-      <div><div class="hs-num">3</div><div class="hs-label">Направления</div></div>
-      <div><div class="hs-num">45</div><div class="hs-label">Экспертов</div></div>
-      <div><div class="hs-num">8</div><div class="hs-label">Стран</div></div>
-    </div>
-    <div class="hero-arrow" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-      <span>Scroll</span>
-      <svg width="18" height="18" fill="none"><path d="M4 7l5 5 5-5" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/></svg>
+<!-- ===== ABOUT 50/50 ===== -->
+<section class="about-z" id="about">
+  <div class="about-z-grid">
+    <div class="about-z-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt=""></div>
+    <div class="about-z-text">
+      <div class="about-z-tag">— О компании URBI</div>
+      <h2 class="about-z-h">URBI закрывает разрыв между идеей и реализацией</h2>
+      <p class="about-z-p">Мы не просто проектируем — мы формируем девелоперский продукт. Архитектура, инфраструктура, экономика — три опоры каждого проекта.</p>
+      <p class="about-z-p">Глубокое понимание градостроительных норм, опыт в коммерческих и промышленных объектах, девелоперский подход — мы создаём продукт, который продаёт сам себя.</p>
+      <a href="about.html" class="about-z-cta">Подробнее о компании <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- STATUS -->
-<div class="strip">
-  <div class="strip-item"><span class="strip-dot"></span>Архитектура · Инфраструктура · Экономика</div>
-  <div class="strip-item"><span class="strip-dot"></span>Фокус: Алатау · Шымкент</div>
-  <div class="strip-item"><span class="strip-dot"></span>Покажем, сколько можно заработать с вашего участка</div>
-</div>
-
-<!-- ABOUT PREVIEW -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div style="position:relative" class="rv">
-        <div class="about-img">
-          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="URBI офис">
-        </div>
-        <div class="about-badge">
-          <div class="about-badge-num">12</div>
-          <div class="about-badge-sub">лет опыта</div>
-        </div>
-      </div>
-      <div>
-        <div class="sec-tag rv">О компании</div>
-        <h2 class="sec-title rv rv-d1">URBI закрывает разрыв<br>между идеей и реализацией</h2>
-        <p class="sec-desc rv rv-d2">Архитектура, инфраструктура, экономика — три опоры каждого проекта. Мы создаём девелоперский продукт: от анализа участка и расчёта окупаемости до рабочей документации и авторского надзора.</p>
-        <div class="stats-row rv rv-d3">
-          <div class="stat-card card-float lev-d1"><div class="stat-card-num" data-t="150">0</div><div class="stat-card-label">Проектов</div></div>
-          <div class="stat-card card-float lev-d2"><div class="stat-card-num" data-t="8">0</div><div class="stat-card-label">Стран</div></div>
-          <div class="stat-card card-float lev-d3"><div class="stat-card-num" data-t="30">0</div><div class="stat-card-label">Наград</div></div>
-        </div>
-        <a href="about.html" class="btn-urban rv rv-d4" style="margin-top:32px">Подробнее <svg width="16" height="16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
-      </div>
-    </div>
+<!-- ===== DIRECTION 1 — GRADOSTROENIE ===== -->
+<section class="dir-z" id="directions">
+  <div class="dir-z-img">
+    <span class="dir-z-num">01</span>
+    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" alt="">
+  </div>
+  <div class="dir-z-content">
+    <div class="dir-z-tag">— Направление 01</div>
+    <h2 class="dir-z-h">Градостроение<br>и развитие территорий</h2>
+    <p class="dir-z-p">Разработка ПДП и мастер-планов, генеральное планирование, транспортное моделирование — основа любого крупного проекта.</p>
+    <ul class="dir-z-list">
+      <li>Разработка ПДП и мастер-планов</li>
+      <li>Генеральное планирование и зонирование</li>
+      <li>Транспортное моделирование</li>
+      <li>Расчёт ТЭП и плотности застройки</li>
+    </ul>
+    <a href="gradostroenie.html" class="dir-z-cta">Перейти <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <div class="ticker-item"><span class="ticker-sep"></span>Вертипорт Алатау — <strong>реализован</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Колизей — <strong>реализован</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Кейпарк — <strong>реализован</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>ПДП Алатау — <strong>в работе</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Мастер-план Шымкент — <strong>проектирование</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>ЖК Алатау — <strong>стройка</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Вертипорт Алатау — <strong>реализован</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Колизей — <strong>реализован</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Кейпарк — <strong>реализован</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>ПДП Алатау — <strong>в работе</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>Мастер-план Шымкент — <strong>проектирование</strong></div>
-    <div class="ticker-item"><span class="ticker-sep"></span>ЖК Алатау — <strong>стройка</strong></div>
+<!-- ===== DIRECTION 2 — IZHS — INVERTED & DARK ===== -->
+<section class="dir-z dark flip">
+  <div class="dir-z-img">
+    <span class="dir-z-num">02</span>
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80" alt="">
   </div>
-</div>
-
-<!-- DIRECTIONS -->
-<section id="directions" style="background:var(--gray)">
-  <div class="container">
-    <div style="text-align:center;max-width:560px;margin:0 auto">
-      <div class="sec-tag rv" style="margin:0 auto 18px">Направления</div>
-      <h2 class="sec-title rv rv-d1">Ключевые продукты<br>URBI</h2>
-      <p class="sec-desc rv rv-d2" style="margin:0 auto">Комплексный подход: от разработки ПДП и мастер-планов до проектирования ЖК, ИЖС и инженерного обеспечения территорий</p>
-    </div>
-    <div class="dirs-grid">
-      <a href="gradostroenie.html" class="dir-card rv">
-        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80" alt="">
-        <div class="dir-over">
-          <div class="dir-num">01 — Направление</div>
-          <div class="dir-name">Градостроение</div>
-          <div class="dir-desc">Разработка ПДП и мастер-планов, генеральное планирование, транспортное моделирование, расчёт ТЭП</div>
-          <div class="dir-btn">Подробнее <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        </div>
-      </a>
-      <a href="izhs.html" class="dir-card rv rv-d1">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="">
-        <div class="dir-over">
-          <div class="dir-num">02 — Направление</div>
-          <div class="dir-name">ИЖС</div>
-          <div class="dir-desc">Проектирование ЖК и индивидуальных домов, оптимальная посадка зданий, типология жилья, благоустройство</div>
-          <div class="dir-btn">Подробнее <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        </div>
-      </a>
-      <a href="izhk.html" class="dir-card rv rv-d2">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="">
-        <div class="dir-over">
-          <div class="dir-num">03 — Направление</div>
-          <div class="dir-name">ИЖК</div>
-          <div class="dir-desc">Коттеджные посёлки, таунхаусы, малоэтажные комплексы — мастер-планирование, инженерные сети, единый архитектурный код</div>
-          <div class="dir-btn">Подробнее <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        </div>
-      </a>
-    </div>
+  <div class="dir-z-content">
+    <div class="dir-z-tag">— Направление 02</div>
+    <h2 class="dir-z-h">ИЖС<br>и жилая застройка</h2>
+    <p class="dir-z-p">Проектирование жилых комплексов и индивидуальных домов с учётом экономики проекта и капитализации каждого квадратного метра.</p>
+    <ul class="dir-z-list">
+      <li>Проектирование ЖК и ИЖС</li>
+      <li>Оптимальная посадка зданий</li>
+      <li>Разработка типологии жилья</li>
+      <li>Архитектурно-градостроительный облик</li>
+    </ul>
+    <a href="izhs.html" class="dir-z-cta">Перейти <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
   </div>
 </section>
 
-<!-- CASES PREVIEW -->
-<section>
-  <div class="container">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:40px">
-      <div>
-        <div class="sec-tag rv">Кейсы</div>
-        <h2 class="sec-title rv rv-d1">Избранные проекты</h2>
+<!-- ===== DIRECTION 3 — IZHK ===== -->
+<section class="dir-z">
+  <div class="dir-z-img">
+    <span class="dir-z-num">03</span>
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80" alt="">
+  </div>
+  <div class="dir-z-content">
+    <div class="dir-z-tag">— Направление 03</div>
+    <h2 class="dir-z-h">ИЖК — комплексное<br>освоение территорий</h2>
+    <p class="dir-z-p">Коттеджные посёлки, малоэтажные комплексы — мастер-планирование, инженерные сети, единый архитектурный код.</p>
+    <ul class="dir-z-list">
+      <li>Мастер-планирование территорий</li>
+      <li>Благоустройство и ландшафт</li>
+      <li>Инженерное обеспечение</li>
+      <li>Единый архитектурный код</li>
+    </ul>
+    <a href="izhk.html" class="dir-z-cta">Перейти <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  </div>
+</section>
+
+<!-- ===== AWARDS / EXPERTISE MARQUEE ===== -->
+<section class="awards-z">
+  <div class="awards-z-label">— Что мы делаем —</div>
+  <div class="awards-z-track">
+    <div class="aw-item">Архитектура</div>
+    <div class="aw-item">Инфраструктура</div>
+    <div class="aw-item">Экономика проекта</div>
+    <div class="aw-item">Девелоперский анализ</div>
+    <div class="aw-item">ПДП</div>
+    <div class="aw-item">Мастер-планы</div>
+    <div class="aw-item">Транспортное моделирование</div>
+    <div class="aw-item">Расчёт ТЭП</div>
+    <div class="aw-item">Авторский надзор</div>
+    <!-- duplicate -->
+    <div class="aw-item">Архитектура</div>
+    <div class="aw-item">Инфраструктура</div>
+    <div class="aw-item">Экономика проекта</div>
+    <div class="aw-item">Девелоперский анализ</div>
+    <div class="aw-item">ПДП</div>
+    <div class="aw-item">Мастер-планы</div>
+    <div class="aw-item">Транспортное моделирование</div>
+    <div class="aw-item">Расчёт ТЭП</div>
+    <div class="aw-item">Авторский надзор</div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="proj-z" id="cases">
+  <div class="proj-z-head">
+    <div class="proj-z-head-left">
+      <div class="proj-z-tag">— Реализованные кейсы</div>
+      <h2 class="proj-z-h">Знаковые<br>проекты URBI</h2>
+    </div>
+    <a href="cases.html" class="about-z-cta">Все кейсы <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  </div>
+  <div class="proj-z-grid">
+    <div class="proj-z-card">
+      <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=900&q=80" alt="">
+      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Градостроение</div><div class="proj-z-card-name">Вертипорт</div><div class="proj-z-card-meta">Алатау · Реализован</div></div>
+    </div>
+    <div class="proj-z-card">
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt="">
+      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Градостроение</div><div class="proj-z-card-name">Колизей</div><div class="proj-z-card-meta">Алатау · Реализован</div></div>
+    </div>
+    <div class="proj-z-card tall">
+      <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=900&q=80" alt="">
+      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Инфраструктура</div><div class="proj-z-card-name">Кейпарк</div><div class="proj-z-card-meta">Алатау · Реализован</div></div>
+    </div>
+    <div class="proj-z-card tall">
+      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=900&q=80" alt="">
+      <div class="proj-z-card-info"><div class="proj-z-card-cat">— Мастер-план</div><div class="proj-z-card-name">ПДП Алатау</div><div class="proj-z-card-meta">Алатау · В работе</div></div>
+    </div>
+  </div>
+  <div class="proj-z-cta"><a href="cases.html">Все кейсы <svg width="18" height="14" fill="none"><path d="M2 7h14M11 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+</section>
+
+<!-- ===== MARKETS ===== -->
+<section class="markets-z">
+  <div class="markets-z-head">
+    <div class="proj-z-tag">— Рынки роста</div>
+    <h2 class="proj-z-h">Где мы работаем</h2>
+  </div>
+  <div class="markets-z-grid">
+    <div class="market-card">
+      <img src="https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=1200&q=80" alt="">
+      <div class="market-card-overlay">
+        <div class="market-card-loc">— Казахстан</div>
+        <div class="market-card-name">Алатау</div>
+        <div class="market-card-desc">Ключевая точка роста с утверждённым мастер-планом. Уже есть реализованные проекты: Вертипорт, Колизей, Кейпарк.</div>
       </div>
-      <a href="cases.html" class="btn-urban btn-urban-outline rv rv-d2">Все кейсы <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></a>
     </div>
-  </div>
-  <div class="cases-scroll" style="padding-left:48px;padding-right:48px">
-    <div class="case-card">
-      <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=500&q=80" alt="">
-      <div class="case-info"><div class="case-cat">Градостроение</div><div class="case-name">Вертипорт</div><div class="case-meta">Алатау · Реализован</div></div>
-    </div>
-    <div class="case-card">
-      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&q=80" alt="">
-      <div class="case-info"><div class="case-cat">Градостроение</div><div class="case-name">Колизей</div><div class="case-meta">Алатау · Реализован</div></div>
-    </div>
-    <div class="case-card">
-      <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=500&q=80" alt="">
-      <div class="case-info"><div class="case-cat">Инфраструктура</div><div class="case-name">Кейпарк</div><div class="case-meta">Алатау · Реализован</div></div>
-    </div>
-    <div class="case-card">
-      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=500&q=80" alt="">
-      <div class="case-info"><div class="case-cat">Градостроение</div><div class="case-name">ПДП Алатау</div><div class="case-meta">Алатау · В работе</div></div>
-    </div>
-    <div class="case-card">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80" alt="">
-      <div class="case-info"><div class="case-cat">ИЖС</div><div class="case-name">Мастер-план Шымкент</div><div class="case-meta">Шымкент · Проектирование</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section style="padding-bottom:0">
-<div class="cta-section rv">
-  <div class="sec-tag" style="background:rgba(255,255,255,.06);color:var(--white);margin:0 auto 18px">Сотрудничество</div>
-  <h2 class="sec-title">Покажем потенциал вашего участка</h2>
-  <p class="sec-desc">Бесплатный анализ территории: расчёт плотности, ТЭП, окупаемости и стратегия развития</p>
-  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-    <a href="contacts.html" class="btn-urban btn-urban-white">Связаться <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    <a href="https://wa.me/77081587757" target="_blank" class="btn-urban" style="background:#25d366">WhatsApp <svg width="14" height="14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5"/></svg></a>
-  </div>
-</div>
-</section>
-
-<!-- CONTACT FORM -->
-<section id="contact">
-  <div class="container">
-    <div class="form-grid">
-      <div>
-        <div class="sec-tag rv">Контакты</div>
-        <h2 class="sec-title rv rv-d1">Расскажите о вашем<br>участке или проекте</h2>
-        <p class="sec-desc rv rv-d2">Оставьте заявку — мы проведём предварительный анализ и покажем, как увеличить стоимость вашей территории</p>
-        <a href="https://wa.me/77081587757" target="_blank" class="wa-cta rv rv-d3">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.21l-.304-.18-2.868.852.852-2.868-.18-.304A8 8 0 1112 20z"/></svg>
-          <div><div class="wa-cta-text">Написать в WhatsApp</div><div class="wa-cta-num">+7 708 158 7757</div></div>
-        </a>
-      </div>
-      <div class="form-card rv rv-d2">
-        <form action="#" method="POST">
-          <div class="fg"><label>Имя</label><input type="text" placeholder="Ваше имя" required></div>
-          <div class="fg"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__" required></div>
-          <div class="fg"><label>Email</label><input type="email" placeholder="email@example.com"></div>
-          <div class="fg"><label>Сообщение</label><textarea placeholder="Расскажите о вашем проекте..."></textarea></div>
-          <button type="submit" class="form-submit">Отправить заявку</button>
-        </form>
+    <div class="market-card">
+      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80" alt="">
+      <div class="market-card-overlay">
+        <div class="market-card-loc">— Казахстан</div>
+        <div class="market-card-name">Шымкент</div>
+        <div class="market-card-desc">Один из самых быстрорастущих рынков Казахстана. Низкая конкуренция по качеству архитектуры и инженерии.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">URBI<span>.</span></div>
-        <p class="footer-desc">Архитектурно-инженерная компания нового поколения. Формируем девелоперский продукт и увеличиваем стоимость земли.</p>
+<!-- ===== QUOTE ===== -->
+<section class="quote-z">
+  <div class="quote-z-content">
+    <div class="quote-z-text">Сочетание технической грамотности и девелоперского мышления для создания продукта, который продаёт сам себя</div>
+    <div class="quote-z-author">— Основатель URBI</div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-z" id="contact-z">
+  <h2 class="cta-z-h">Покажем, сколько можно <em>заработать</em><br>с вашего участка</h2>
+  <p class="cta-z-p">Бесплатный предварительный анализ территории: расчёт плотности, ТЭП, окупаемости и стратегия развития</p>
+  <div class="cta-z-buttons">
+    <a href="contacts.html" class="cta-z-btn cta-z-btn-primary">Оставить заявку</a>
+    <a href="https://wa.me/77081587757" target="_blank" class="cta-z-btn cta-z-btn-wa">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-z">
+  <div class="footer-z-grid">
+    <div>
+      <div class="fz-logo">
+        <div class="fz-logo-mark">
+          <span></span><span class="b"></span><span></span>
+          <span class="b"></span><span></span><span class="b"></span>
+          <span></span><span class="b"></span><span></span>
+        </div>
+        <div class="fz-logo-text">URBI</div>
       </div>
-      <div>
-        <div class="footer-heading">Направления</div>
-        <a href="gradostroenie.html" class="footer-link">Градостроение</a>
-        <a href="izhs.html" class="footer-link">ИЖС</a>
-        <a href="izhk.html" class="footer-link">ИЖК</a>
-      </div>
-      <div>
-        <div class="footer-heading">Компания</div>
-        <a href="about.html" class="footer-link">О компании</a>
-        <a href="cases.html" class="footer-link">Кейсы</a>
-        <a href="contacts.html" class="footer-link">Контакты</a>
-      </div>
-      <div>
-        <div class="footer-heading">Связаться</div>
-        <a href="tel:+77081587757" class="footer-link">+7 708 158 7757</a>
-        <a href="mailto:info@urbi.kz" class="footer-link">info@urbi.kz</a>
-        <a href="https://wa.me/77081587757" target="_blank" class="footer-link">WhatsApp</a>
-      </div>
+      <p class="fz-desc">Архитектурно-инженерная компания нового поколения. Формируем девелоперский продукт и увеличиваем стоимость земли.</p>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 URBI. Все права защищены. urbi.kz</p>
-      <div class="footer-socials">
-        <a href="#">IG</a><a href="#">TG</a><a href="#">YT</a><a href="#">BE</a>
-      </div>
+    <div>
+      <div class="fz-h">— Направления</div>
+      <a href="gradostroenie.html" class="fz-link">Градостроение</a>
+      <a href="izhs.html" class="fz-link">ИЖС</a>
+      <a href="izhk.html" class="fz-link">ИЖК</a>
     </div>
+    <div>
+      <div class="fz-h">— Компания</div>
+      <a href="about.html" class="fz-link">О компании</a>
+      <a href="cases.html" class="fz-link">Кейсы</a>
+      <a href="contacts.html" class="fz-link">Контакты</a>
+    </div>
+    <div>
+      <div class="fz-h">— Связь</div>
+      <a href="tel:+77081587757" class="fz-link">+7 708 158 7757</a>
+      <a href="mailto:info@urbi.kz" class="fz-link">info@urbi.kz</a>
+      <a href="https://wa.me/77081587757" class="fz-link">WhatsApp</a>
+    </div>
+  </div>
+  <div class="fz-bottom">
+    <div class="fz-copy">© 2026 URBI · urbi.kz · Все права защищены</div>
+    <div class="fz-socials"><a href="#">IG</a><a href="#">TG</a><a href="#">YT</a><a href="#">BE</a></div>
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
+<!-- WhatsApp float -->
 <a href="https://wa.me/77081587757" target="_blank" class="wa-float">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.21l-.304-.18-2.868.852.852-2.868-.18-.304A8 8 0 1112 20z"/></svg>
 </a>
 
 <script>
-// Preloader
-window.addEventListener('load',()=>setTimeout(()=>document.querySelector('.preloader').classList.add('done'),1000));
-// Nav scroll
-addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',scrollY>60));
-// Burger
-const b=document.querySelector('.burger'),mm=document.querySelector('.mob-menu');
-b.onclick=()=>{b.classList.toggle('on');mm.classList.toggle('on');document.body.style.overflow=mm.classList.contains('on')?'hidden':''};
-mm.querySelectorAll('a').forEach(a=>a.onclick=()=>{b.classList.remove('on');mm.classList.remove('on');document.body.style.overflow=''});
-// Reveal
-(()=>{const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.rv').forEach(el=>o.observe(el))})();
-// Counters
-(()=>{const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=+e.target.dataset.t;let c=0;const s=t/45;const i=setInterval(()=>{c+=s;if(c>=t){e.target.textContent=t+'+';clearInterval(i)}else e.target.textContent=Math.floor(c)},30);o.unobserve(e.target)}}),{threshold:.5});document.querySelectorAll('[data-t]').forEach(el=>o.observe(el))})();
+window.addEventListener('load',()=>setTimeout(()=>document.querySelector('.preloader').classList.add('done'),900));
+
+// Mobile menu close
+const mm=document.querySelector('.mob-menu');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>{mm.classList.remove('on');document.body.style.overflow=''});
+
+// Reveal on scroll
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
