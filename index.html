@@ -44,11 +44,13 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 .lang-globe:hover{border-color:var(--blue);color:var(--blue)}
 .lang-corner-text{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)}
 
-/* ===== HERO — FULLSCREEN ===== */
-.hero-z{position:relative;height:100vh;min-height:720px;background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center}
+/* ===== HERO — FULLSCREEN with VIDEO ===== */
+.hero-z{position:relative;height:100vh;min-height:720px;background:#0a0a0a;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .hero-z-bg{position:absolute;inset:0;z-index:1}
-.hero-z-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.55) saturate(.9);animation:slowZoom 30s ease-in-out infinite alternate}
-@keyframes slowZoom{0%{transform:scale(1.05)}100%{transform:scale(1)}}
+.hero-z-bg video,.hero-z-bg img{position:absolute;top:50%;left:50%;width:100%;height:100%;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;filter:brightness(.55) saturate(.9)}
+.hero-z-bg img{animation:slowZoom 30s ease-in-out infinite alternate}
+.hero-z-bg video{animation:none}
+@keyframes slowZoom{0%{transform:translate(-50%,-50%) scale(1.05)}100%{transform:translate(-50%,-50%) scale(1)}}
 .hero-z-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(13,27,42,.3) 0%,rgba(13,27,42,.55) 100%)}
 
 /* Architectural cross lines on hero */
@@ -327,7 +329,15 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 
 <!-- ===== HERO ===== -->
 <section class="hero-z">
-  <div class="hero-z-bg"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80" alt=""></div>
+  <div class="hero-z-bg">
+    <!-- Video background (autoplay, muted, loop) — falls back to image if video fails -->
+    <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80">
+      <source src="https://cdn.pixabay.com/video/2024/05/02/210050_large.mp4" type="video/mp4">
+      <source src="https://cdn.pixabay.com/video/2019/08/30/26370-357568586_large.mp4" type="video/mp4">
+      <source src="https://videos.pexels.com/video-files/2099568/2099568-hd_1920_1080_30fps.mp4" type="video/mp4">
+      <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80" alt="">
+    </video>
+  </div>
   <div class="hero-z-overlay"></div>
   <div class="hero-z-cross"><div class="v25"></div><div class="v75"></div></div>
   <div class="hero-z-content">
@@ -703,6 +713,25 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 
 <script>
 window.addEventListener('load',()=>setTimeout(()=>document.querySelector('.preloader').classList.add('done'),900));
+
+// Video fallback — if video fails to load, replace with image
+(function(){
+  const video = document.querySelector('.hero-z-bg video');
+  if (!video) return;
+  let played = false;
+  video.addEventListener('playing', ()=>{ played = true; });
+  // After 4 sec — if not playing, replace with image
+  setTimeout(()=>{
+    if (!played){
+      const img = document.createElement('img');
+      img.src = 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80';
+      img.alt = '';
+      video.parentNode.replaceChild(img, video);
+    }
+  }, 4000);
+  // Try playing programmatically (for autoplay restrictions)
+  video.play().catch(()=>{});
+})();
 
 // Mobile menu close
 const mm=document.querySelector('.mob-menu');
