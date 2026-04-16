@@ -152,26 +152,53 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 .dir-z.dark .dir-z-cta{background:#fff;color:var(--navy)}
 .dir-z.dark .dir-z-cta:hover{background:var(--blue);color:#fff}
 
-/* ===== WORLD MAP BLOCK (zrobim "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ МИРУ") ===== */
-.world-z{position:relative;min-height:100vh;background:#2c2c2c;color:#fff;overflow:hidden;display:flex;flex-direction:column}
-.world-z-inner{position:relative;z-index:2;flex:1;padding:80px 80px 120px 100px;display:flex;flex-direction:column}
+/* ===== KZ MAP BLOCK ("МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ КАЗАХСТАНУ") ===== */
+.world-z{position:relative;min-height:100vh;background:#1f1f1f;color:#fff;overflow:hidden;display:flex;flex-direction:column}
+.world-z-inner{position:relative;z-index:2;flex:1;padding:70px 80px 90px 100px;display:flex;flex-direction:column}
 .world-z-title{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.15;letter-spacing:.02em;color:#fff;text-transform:uppercase;font-weight:300;margin-bottom:8px}
 .world-z-title .b{display:block;font-weight:700}
 .world-z-line{width:90px;height:3px;background:var(--blue);margin-top:18px}
-/* Map area */
-.world-z-map{flex:1;position:relative;margin-top:48px}
-.world-z-map svg{position:absolute;inset:0;width:100%;height:100%;stroke:rgba(255,255,255,.18);stroke-width:.5;fill:none}
-/* City labels positioned absolutely on map */
-.wm-city{position:absolute;font-weight:700;color:#fff;letter-spacing:.04em;text-transform:uppercase;cursor:default;transition:color .3s,transform .3s;white-space:nowrap;transform:translate(-50%,-50%)}
-.wm-city:hover{color:var(--blue);transform:translate(-50%,-50%) scale(1.1)}
-.wm-city.lg{font-size:1.5rem}
-.wm-city.md{font-size:1rem}
-.wm-city.sm{font-size:.78rem;color:rgba(255,255,255,.8)}
-.wm-city.xs{font-size:.68rem;color:rgba(255,255,255,.7)}
-/* Center divider line (vertical through middle like zrobim) */
-.world-z::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.06);z-index:1}
-.world-z-arrow{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:5;cursor:pointer}
+
+/* Map container */
+.world-z-map{position:relative;margin:32px auto 0;width:100%;max-width:1400px;aspect-ratio:3000/1700}
+/* Actual drawn map of Kazakhstan (Wikimedia Commons, CC BY-SA 4.0) */
+.kz-map-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  /* tint the light-gray map to a soft white-on-dark silhouette */
+  filter:brightness(0) invert(1) opacity(.32) drop-shadow(0 0 40px rgba(28,184,255,.2));
+  pointer-events:none;user-select:none}
+.kz-map-img.glow{filter:brightness(0) saturate(0) invert(.5) sepia(1) hue-rotate(170deg) saturate(5) blur(14px) opacity(.4);mix-blend-mode:screen}
+
+/* City dot + label (HTML, positioned in % of the map container) */
+.kz-city{position:absolute;transform:translate(-50%,-50%);z-index:3;cursor:default}
+.kz-city .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.7);margin:0 auto;transition:background .3s,transform .3s,box-shadow .3s}
+.kz-city .lab{display:block;margin-top:6px;font-weight:700;color:#fff;letter-spacing:.06em;text-transform:uppercase;font-size:11px;white-space:nowrap;transition:color .3s;text-align:center}
+.kz-city.above .lab{margin-top:0;margin-bottom:6px;order:-1}
+.kz-city.above{display:flex;flex-direction:column}
+.kz-city.right{display:flex;align-items:center;gap:8px}
+.kz-city.right .lab{margin:0}
+.kz-city.left{display:flex;flex-direction:row-reverse;align-items:center;gap:8px}
+.kz-city.left .lab{margin:0}
+.kz-city.sm .lab{font-size:12px}
+.kz-city.md .lab{font-size:14px;font-weight:800}
+.kz-city.lg .lab{font-size:28px;font-weight:900;letter-spacing:.04em}
+.kz-city.lg .dot{width:12px;height:12px;background:var(--blue);box-shadow:0 0 0 4px rgba(28,184,255,.22),0 0 24px rgba(28,184,255,.6)}
+.kz-city.lg .lab{color:var(--blue)}
+.kz-city.md .dot{width:9px;height:9px}
+.kz-city:hover .dot{background:var(--blue);transform:scale(1.3);box-shadow:0 0 0 4px rgba(28,184,255,.2)}
+.kz-city:hover .lab{color:var(--blue)}
+
+/* Pulse ring around featured city */
+.kz-city.lg::before{content:'';position:absolute;top:50%;left:50%;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--blue);transform:translate(-50%,-50%);animation:kzPulse 2.4s ease-out infinite;pointer-events:none}
+@keyframes kzPulse{0%{width:12px;height:12px;opacity:.7}100%{width:70px;height:70px;opacity:0}}
+
+/* Subtle center divider (kept from previous design for style continuity) */
+.world-z::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.05);z-index:1}
+.world-z-arrow{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:5;cursor:pointer}
 .world-z-arrow svg{width:28px;height:28px;animation:bounceY 2s ease-in-out infinite}
+/* Attribution (bottom-right, tiny) */
+.kz-attr{position:absolute;right:20px;bottom:20px;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.04em;z-index:4}
+.kz-attr a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.2)}
+.kz-attr a:hover{color:rgba(255,255,255,.6)}
 
 /* ===== SERVICE BLOCK — full screen 50/50 (zrobim "Проектирование частных домов") ===== */
 .svc-z{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#2c2c2c;color:#fff;overflow:hidden}
@@ -585,67 +612,54 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   </div>
 </section>
 
-<!-- ===== WORLD MAP "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ МИРУ" ===== -->
+<!-- ===== KAZAKHSTAN MAP "МЫ ПРОЕКТИРУЕМ ПО ВСЕМУ КАЗАХСТАНУ" ===== -->
 <section class="world-z">
   <div class="world-z-inner">
-    <h2 class="world-z-title">Мы проектируем<span class="b">по всему миру</span></h2>
+    <h2 class="world-z-title">Мы проектируем<span class="b">по всему Казахстану</span></h2>
     <div class="world-z-line"></div>
 
-    <!-- Map container with cities -->
+    <!-- Map container: real drawn Kazakhstan (Wikimedia Commons) + city labels on top -->
     <div class="world-z-map">
-      <!-- Simplified continents outline (SVG paths) -->
-      <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
-        <!-- Very rough continent outlines, just enough for ambient effect -->
-        <!-- North America -->
-        <path d="M50 130 Q80 100 130 110 L180 130 L220 160 L260 200 L240 240 L200 260 L150 270 L100 250 L70 200 Z"/>
-        <!-- South America -->
-        <path d="M220 290 L260 290 L280 330 L270 380 L240 420 L210 410 L195 360 Z"/>
-        <!-- Europe -->
-        <path d="M460 130 L520 120 L560 140 L550 180 L500 195 L470 180 Z"/>
-        <!-- Africa -->
-        <path d="M470 220 L540 210 L570 260 L560 320 L520 380 L480 380 L455 320 L450 260 Z"/>
-        <!-- Asia -->
-        <path d="M560 110 Q650 90 750 110 L850 130 L900 170 L880 220 L820 240 L750 250 L680 240 L620 230 L580 200 L560 160 Z"/>
-        <!-- Middle East -->
-        <path d="M580 220 L640 215 L660 260 L630 290 L595 280 Z"/>
-        <!-- India -->
-        <path d="M680 230 L720 230 L735 270 L710 300 L685 280 Z"/>
-        <!-- Australia -->
-        <path d="M820 340 Q860 330 900 350 L910 390 L870 410 L820 400 L805 370 Z"/>
-        <!-- Greenland -->
-        <path d="M380 80 L430 75 L440 120 L410 130 L385 110 Z"/>
-      </svg>
+      <img class="kz-map-img glow" src="kz-map.svg" alt="" aria-hidden="true">
+      <img class="kz-map-img" src="kz-map.svg" alt="Карта Казахстана">
 
-      <!-- City labels — Almaty featured (URBI's home), other Kazakh cities + international -->
-      <span class="wm-city sm" style="top:50%;left:13%">САН-ФРАНЦИСКО</span>
-      <span class="wm-city sm" style="top:46%;left:23%">ЧИКАГО</span>
-      <span class="wm-city md" style="top:48%;left:32%">НЬЮ-ЙОРК</span>
-      <span class="wm-city xs" style="top:78%;left:25%">САН-ПАУЛУ</span>
+      <!-- Cities — positions in % of the 3000×1700 map bounding box -->
+      <!-- West -->
+      <span class="kz-city sm above" style="left:9%;top:32%"><span class="dot"></span><span class="lab">Уральск</span></span>
+      <span class="kz-city sm left"  style="left:22%;top:40%"><span class="dot"></span><span class="lab">Актобе</span></span>
+      <span class="kz-city sm left"  style="left:12%;top:57%"><span class="dot"></span><span class="lab">Атырау</span></span>
+      <span class="kz-city sm left"  style="left:10%;top:74%"><span class="dot"></span><span class="lab">Актау</span></span>
 
-      <span class="wm-city sm" style="top:36%;left:46%">ЛОНДОН</span>
-      <span class="wm-city xs" style="top:34%;left:41%">ДУБЛИН</span>
-      <span class="wm-city sm" style="top:42%;left:48%">ПАРИЖ</span>
-      <span class="wm-city xs" style="top:48%;left:46%">МАДРИД</span>
-      <span class="wm-city xs" style="top:42%;left:53%">ВЕНА</span>
-      <span class="wm-city xs" style="top:36%;left:55%">ВАРШАВА</span>
-      <span class="wm-city xs" style="top:32%;left:58%">РИГА</span>
-      <span class="wm-city sm" style="top:30%;left:62%">МОСКВА</span>
-      <span class="wm-city xs" style="top:42%;left:60%">КИЕВ</span>
-      <span class="wm-city xs" style="top:50%;left:60%">СТАМБУЛ</span>
-      <span class="wm-city xs" style="top:54%;left:64%">ТБИЛИСИ</span>
+      <!-- North -->
+      <span class="kz-city sm above" style="left:38%;top:19%"><span class="dot"></span><span class="lab">Костанай</span></span>
+      <span class="kz-city sm above" style="left:52%;top:9%"><span class="dot"></span><span class="lab">Петропавловск</span></span>
+      <span class="kz-city sm above" style="left:56%;top:16%"><span class="dot"></span><span class="lab">Кокшетау</span></span>
 
-      <span class="wm-city sm" style="top:60%;left:62%">ДУБАЙ</span>
-      <span class="wm-city xs" style="top:62%;left:58%">ЭР-РИЯД</span>
+      <!-- Capital -->
+      <span class="kz-city md"       style="left:60%;top:30%"><span class="dot"></span><span class="lab">Астана</span></span>
 
-      <!-- KAZAKHSTAN — featured -->
-      <span class="wm-city lg" style="top:38%;left:69%;color:var(--blue)">АЛМАТЫ</span>
-      <span class="wm-city sm" style="top:44%;left:71%">АЛАТАУ</span>
-      <span class="wm-city sm" style="top:34%;left:67%">АСТАНА</span>
-      <span class="wm-city xs" style="top:46%;left:65%">ШЫМКЕНТ</span>
+      <!-- North-East -->
+      <span class="kz-city sm above" style="left:74%;top:26%"><span class="dot"></span><span class="lab">Павлодар</span></span>
+      <span class="kz-city sm above" style="left:82%;top:36%"><span class="dot"></span><span class="lab">Семей</span></span>
+      <span class="kz-city sm right" style="left:88%;top:39%"><span class="dot"></span><span class="lab">Усть-Каменогорск</span></span>
 
-      <span class="wm-city sm" style="top:42%;left:80%">УЛАН-БАТОР</span>
-      <span class="wm-city xs" style="top:54%;left:75%">ДЕЛИ</span>
-      <span class="wm-city xs" style="top:78%;left:84%">СИДНЕЙ</span>
+      <!-- Central -->
+      <span class="kz-city sm right" style="left:66%;top:40%"><span class="dot"></span><span class="lab">Караганда</span></span>
+      <span class="kz-city sm above" style="left:56%;top:55%"><span class="dot"></span><span class="lab">Жезказган</span></span>
+
+      <!-- South -->
+      <span class="kz-city sm above" style="left:46%;top:70%"><span class="dot"></span><span class="lab">Кызылорда</span></span>
+      <span class="kz-city sm"       style="left:57%;top:82%"><span class="dot"></span><span class="lab">Шымкент</span></span>
+      <span class="kz-city sm"       style="left:63%;top:80%"><span class="dot"></span><span class="lab">Тараз</span></span>
+
+      <!-- South-East -->
+      <span class="kz-city sm right" style="left:78%;top:69%"><span class="dot"></span><span class="lab">Талдыкорган</span></span>
+
+      <!-- Almaty — FEATURED -->
+      <span class="kz-city lg above" style="left:75%;top:77%"><span class="dot"></span><span class="lab">Алматы</span></span>
+
+      <!-- Attribution -->
+      <span class="kz-attr">Карта © Wikimedia Commons · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></span>
     </div>
   </div>
   <div class="world-z-arrow" onclick="document.querySelectorAll('.svc-z')[0].scrollIntoView({behavior:'smooth'})">
