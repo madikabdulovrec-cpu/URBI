@@ -437,7 +437,13 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .svc-z-img{aspect-ratio:16/10;height:auto}
   .svc-z-text{padding:60px 32px}
   .world-z-inner{padding:60px 40px}
-  .wm-city.lg{font-size:1.05rem}.wm-city.md{font-size:.85rem}.wm-city.sm{font-size:.7rem}.wm-city.xs{font-size:.62rem}
+  /* KZ map — tablet */
+  .world-z-map{margin-top:24px}
+  .kz-city .lab{font-size:10px}
+  .kz-city.sm .lab{font-size:11px}
+  .kz-city.md .lab{font-size:12px}
+  .kz-city.lg .lab{font-size:20px}
+  .kz-city.lg .dot{width:10px;height:10px}
   .contacts-z-grid{grid-template-columns:1fr 1fr;gap:32px}
   .form-z-form label:nth-child(even):not(.full){padding-left:0;border-left:none}
   .form-z-form label:nth-child(odd){padding-right:0}
@@ -450,7 +456,18 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .slogan-z-counters{padding-left:20px;padding-right:20px;margin-top:64px}
   .video-z,.form-z,.contacts-z{padding:80px 0}
   .video-z-frame,.form-z-card,.contacts-z-h,.contacts-z-grid,.foot-z-inner{padding-left:20px;padding-right:20px}
-  .world-z-inner{padding:60px 24px 80px}
+  .world-z-inner{padding:50px 24px 70px}
+  /* KZ map — mid-tablet / large phone */
+  .world-z{min-height:auto}
+  .world-z-map{margin-top:24px}
+  .kz-city .dot{width:6px;height:6px}
+  .kz-city .lab{font-size:9.5px}
+  .kz-city.sm .lab{font-size:10px}
+  .kz-city.md .lab{font-size:12px}
+  .kz-city.lg .lab{font-size:18px}
+  .kz-city.lg .dot{width:10px;height:10px}
+  .kz-attr{font-size:9px;right:12px;bottom:12px}
+  .world-z-arrow{display:none}
   .svc-z-text{padding:48px 24px}
   .svc-z-btn{padding:18px;font-size:.65rem}
   .form-z-form{grid-template-columns:1fr}
@@ -471,6 +488,35 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
   .fz-bottom{padding:24px 20px 0;flex-direction:column;text-align:center}
   .market-card-name{font-size:1.5rem}
   .dir-z-content{padding:48px 20px}
+}
+/* ===== Small phones (≤520px) — tighten further ===== */
+@media(max-width:520px){
+  /* Slogan block */
+  .slogan-z{padding:64px 0 56px}
+  .slogan-z-eyebrow{letter-spacing:.3em;margin-bottom:20px;font-size:.58rem}
+  .slogan-z-h{font-size:1.4rem;line-height:1.3;padding:0 18px}
+  .slogan-z-accent{margin-top:20px;width:48px}
+  .slogan-z-sub{font-size:.82rem;margin-top:20px;padding:0 18px}
+  .slogan-z-counters{margin-top:44px;padding-top:36px;gap:24px}
+  .szc{padding-left:18px}
+  .szc-num{font-size:1.9rem}
+  .szc-label{font-size:.6rem;letter-spacing:.16em;margin-top:8px}
+  /* KZ map — small phone */
+  .world-z-inner{padding:44px 16px 60px}
+  .world-z-title{font-size:1.3rem}
+  .world-z-line{width:60px;height:2px;margin-top:14px}
+  .world-z-map{margin-top:18px;aspect-ratio:3000/2100}
+  .kz-map-img{filter:brightness(0) invert(1) opacity(.3) drop-shadow(0 0 18px rgba(28,184,255,.2))}
+  .kz-city .dot{width:5px;height:5px}
+  .kz-city .lab{font-size:8.5px;letter-spacing:.02em}
+  .kz-city.sm .lab{font-size:9px}
+  .kz-city.md .lab{font-size:10px;font-weight:800}
+  .kz-city.lg .lab{font-size:14px;font-weight:900;letter-spacing:.02em}
+  .kz-city.lg .dot{width:8px;height:8px;box-shadow:0 0 0 3px rgba(28,184,255,.22),0 0 14px rgba(28,184,255,.5)}
+  .kz-city.lg::before{width:8px;height:8px}
+  @keyframes kzPulse{0%{width:8px;height:8px;opacity:.7}100%{width:42px;height:42px;opacity:0}}
+  .kz-city.hide-sm{display:none}
+  .kz-attr{font-size:8px;right:8px;bottom:8px}
 }
 </style>
 </head>
@@ -635,25 +681,25 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 
       <!-- North -->
       <span class="kz-city sm above" style="left:38%;top:19%"><span class="dot"></span><span class="lab">Костанай</span></span>
-      <span class="kz-city sm above" style="left:52%;top:9%"><span class="dot"></span><span class="lab">Петропавловск</span></span>
-      <span class="kz-city sm above" style="left:56%;top:16%"><span class="dot"></span><span class="lab">Кокшетау</span></span>
+      <span class="kz-city sm above hide-sm" style="left:52%;top:9%"><span class="dot"></span><span class="lab">Петропавловск</span></span>
+      <span class="kz-city sm above hide-sm" style="left:56%;top:16%"><span class="dot"></span><span class="lab">Кокшетау</span></span>
 
       <!-- Capital -->
       <span class="kz-city md"       style="left:60%;top:30%"><span class="dot"></span><span class="lab">Астана</span></span>
 
       <!-- North-East -->
       <span class="kz-city sm above" style="left:74%;top:26%"><span class="dot"></span><span class="lab">Павлодар</span></span>
-      <span class="kz-city sm above" style="left:82%;top:36%"><span class="dot"></span><span class="lab">Семей</span></span>
+      <span class="kz-city sm above hide-sm" style="left:82%;top:36%"><span class="dot"></span><span class="lab">Семей</span></span>
       <span class="kz-city sm right" style="left:88%;top:39%"><span class="dot"></span><span class="lab">Усть-Каменогорск</span></span>
 
       <!-- Central -->
       <span class="kz-city sm right" style="left:66%;top:40%"><span class="dot"></span><span class="lab">Караганда</span></span>
-      <span class="kz-city sm above" style="left:56%;top:55%"><span class="dot"></span><span class="lab">Жезказган</span></span>
+      <span class="kz-city sm above hide-sm" style="left:56%;top:55%"><span class="dot"></span><span class="lab">Жезказган</span></span>
 
       <!-- South -->
       <span class="kz-city sm above" style="left:46%;top:70%"><span class="dot"></span><span class="lab">Кызылорда</span></span>
       <span class="kz-city sm"       style="left:57%;top:82%"><span class="dot"></span><span class="lab">Шымкент</span></span>
-      <span class="kz-city sm"       style="left:63%;top:80%"><span class="dot"></span><span class="lab">Тараз</span></span>
+      <span class="kz-city sm hide-sm" style="left:63%;top:80%"><span class="dot"></span><span class="lab">Тараз</span></span>
 
       <!-- South-East -->
       <span class="kz-city sm right" style="left:78%;top:69%"><span class="dot"></span><span class="lab">Талдыкорган</span></span>
