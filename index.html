@@ -162,13 +162,51 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
 .world-z-line{width:90px;height:3px;background:var(--blue);margin-top:18px}
 
 /* Map container */
-.world-z-map{position:relative;margin:32px auto 0;width:100%;max-width:1400px;aspect-ratio:3000/1700}
+.world-z-map{position:relative;margin:32px auto 0;width:100%;max-width:1400px;aspect-ratio:3000/1700;
+  /* Blueprint grid background */
+  background-image:
+    linear-gradient(rgba(28,184,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(28,184,255,.035) 1px,transparent 1px),
+    radial-gradient(ellipse at 75% 77%,rgba(28,184,255,.06) 0%,transparent 55%);
+  background-size:40px 40px,40px 40px,100% 100%}
+
 /* Actual drawn map of Kazakhstan (Wikimedia Commons, CC BY-SA 4.0) */
 .kz-map-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
   /* tint the light-gray map to a soft white-on-dark silhouette */
-  filter:brightness(0) invert(1) opacity(.32) drop-shadow(0 0 40px rgba(28,184,255,.2));
+  filter:brightness(0) invert(1) opacity(.38) drop-shadow(0 0 40px rgba(28,184,255,.22));
   pointer-events:none;user-select:none}
-.kz-map-img.glow{filter:brightness(0) saturate(0) invert(.5) sepia(1) hue-rotate(170deg) saturate(5) blur(14px) opacity(.4);mix-blend-mode:screen}
+.kz-map-img.glow{filter:brightness(0) saturate(0) invert(.5) sepia(1) hue-rotate(170deg) saturate(5) blur(16px) opacity(.45);mix-blend-mode:screen;animation:kzMapPulse 6s ease-in-out infinite}
+@keyframes kzMapPulse{0%,100%{opacity:.35}50%{opacity:.55}}
+
+/* Overlay SVG — radar rings + connection lines from Almaty */
+.kz-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}
+.kz-rings circle{fill:none;stroke:rgba(28,184,255,.5);stroke-width:3;transform-origin:center}
+.kz-rings circle.r1{animation:kzRing 3.6s ease-out infinite}
+.kz-rings circle.r2{animation:kzRing 3.6s ease-out 1.2s infinite}
+.kz-rings circle.r3{animation:kzRing 3.6s ease-out 2.4s infinite}
+@keyframes kzRing{0%{r:40;opacity:.8;stroke-width:4}100%{r:340;opacity:0;stroke-width:1}}
+.kz-center{fill:var(--blue);filter:drop-shadow(0 0 8px var(--blue))}
+
+.kz-connect line{stroke:rgba(28,184,255,.35);stroke-width:1.2;stroke-dasharray:6 6;animation:kzDash 18s linear infinite}
+@keyframes kzDash{to{stroke-dashoffset:-240}}
+
+/* Corner brackets (architectural HUD) */
+.kz-corner{position:absolute;width:28px;height:28px;border:1px solid rgba(28,184,255,.5);z-index:3;pointer-events:none}
+.kz-corner.tl{top:8px;left:8px;border-right:none;border-bottom:none}
+.kz-corner.tr{top:8px;right:8px;border-left:none;border-bottom:none}
+.kz-corner.bl{bottom:8px;left:8px;border-right:none;border-top:none}
+.kz-corner.br{bottom:8px;right:8px;border-left:none;border-top:none}
+
+/* Coordinate labels at corners */
+.kz-coord{position:absolute;font-size:9px;letter-spacing:.25em;color:rgba(28,184,255,.55);font-weight:600;font-family:monospace;z-index:3;pointer-events:none}
+.kz-coord.tl{top:14px;left:44px}
+.kz-coord.tr{top:14px;right:44px}
+.kz-coord.bl{bottom:14px;left:44px}
+.kz-coord.br{bottom:14px;right:44px}
+
+/* Scale bar */
+.kz-scale{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.35);font-family:monospace;pointer-events:none}
+.kz-scale-bar{width:60px;height:2px;background:linear-gradient(90deg,rgba(28,184,255,.5) 50%,rgba(255,255,255,.3) 50%);background-size:20px 100%}
 
 /* City dot + label (HTML, positioned in % of the map container) */
 .kz-city{position:absolute;transform:translate(-50%,-50%);z-index:3;cursor:default}
@@ -671,6 +709,48 @@ body{background:#f0f0f0;color:#222;font-family:Verdana,sans-serif}
     <div class="world-z-map">
       <img class="kz-map-img glow" src="kz-map.svg" alt="" aria-hidden="true">
       <img class="kz-map-img" src="kz-map.svg" alt="Карта Казахстана">
+
+      <!-- Architectural HUD overlay: connection lines from Almaty + radar rings -->
+      <svg class="kz-overlay" viewBox="0 0 1765 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- Connection lines: Almaty → each major city (dashed, animated flow) -->
+        <g class="kz-connect">
+          <line x1="1323" y1="770" x2="159"  y2="320"/>
+          <line x1="1323" y1="770" x2="388"  y2="400"/>
+          <line x1="1323" y1="770" x2="212"  y2="570"/>
+          <line x1="1323" y1="770" x2="177"  y2="740"/>
+          <line x1="1323" y1="770" x2="671"  y2="190"/>
+          <line x1="1323" y1="770" x2="1059" y2="300"/>
+          <line x1="1323" y1="770" x2="1306" y2="260"/>
+          <line x1="1323" y1="770" x2="1553" y2="390"/>
+          <line x1="1323" y1="770" x2="1165" y2="400"/>
+          <line x1="1323" y1="770" x2="812"  y2="700"/>
+          <line x1="1323" y1="770" x2="1006" y2="820"/>
+          <line x1="1323" y1="770" x2="1377" y2="690"/>
+        </g>
+        <!-- Radar rings pulsing at Almaty -->
+        <g class="kz-rings">
+          <circle class="r1" cx="1323" cy="770"/>
+          <circle class="r2" cx="1323" cy="770"/>
+          <circle class="r3" cx="1323" cy="770"/>
+        </g>
+        <!-- Central glowing core at Almaty -->
+        <circle class="kz-center" cx="1323" cy="770" r="6"/>
+      </svg>
+
+      <!-- Corner HUD brackets -->
+      <span class="kz-corner tl"></span>
+      <span class="kz-corner tr"></span>
+      <span class="kz-corner bl"></span>
+      <span class="kz-corner br"></span>
+
+      <!-- Geographic coordinates (approximate KZ bounding box) -->
+      <span class="kz-coord tl">55°N · 46°E</span>
+      <span class="kz-coord tr">55°N · 87°E</span>
+      <span class="kz-coord bl">40°N · 46°E</span>
+      <span class="kz-coord br">40°N · 87°E</span>
+
+      <!-- Scale indicator -->
+      <div class="kz-scale"><span class="kz-scale-bar"></span>500 КМ</div>
 
       <!-- Cities — positions in % of the 3000×1700 map bounding box -->
       <!-- West -->
